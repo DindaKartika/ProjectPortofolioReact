@@ -13,7 +13,7 @@ import AePublishing from './../image/shop/ae-publishing.png'
 import BentangPustaka from './../image/shop/bentang-pustaka.jpg'
 import EdwritePublishing from './../image/shop/edwrite-publishing.png'
 import Mizan from './../image/shop/mizan.jpg'
-import Esis from './../image/shop/200px-Esis.jpg'
+import Erlangga from './../image/shop/200px-Esis.jpg'
 import Ellunar from './../image/shop/ellunar-publisher.jpg'
 import JejakPublisher from './../image/shop/jejak-publisher.jpeg'
 import StilettoBook from './../image/shop/stiletto-book.png'
@@ -33,7 +33,7 @@ class HomePublisher extends Component{
                     </div>
                     <div className="col-md-3 col-6">
                         <div className="telusuri">
-                            <Link to="/publisher" className="baca-selengkapnya">
+                            <Link to="/penulis" className="baca-selengkapnya">
                                 <span>Telusuri lebih banyak</span>
                                 <img className="arrow" src={Arrow}/>
                             </Link>
@@ -42,61 +42,61 @@ class HomePublisher extends Component{
                 </div>
                 <div className="publisher">
                     <div className="row">
-                        <div className="col-md-3 col-6 publisher-big">
-                            <Link to="/publisher/gramedia">
+                        <div className="col-md-3 publisher-big">
+                            <Link to="/penerbit/gramedia">
                                 <img src={Gramedia}/>
                             </Link>
                         </div>
-                        <div className="col-md-3 col-6">
+                        <div className="col-md-3">
                             <div className="row">
                                 <div className="col-6 publisher-small">
-                                    <Link to="/publisher/ellunar">
+                                    <Link to="/penerbit/ellunar">
                                         <img src={Ellunar}/>
                                     </Link>
                                 </div>
                                 <div className="col-6 publisher-small">
-                                    <Link to="/publisher/esis">
-                                        <img src={Esis}/>
+                                    <Link to="/publisher/erlangga">
+                                        <img src={Erlangga}/>
                                     </Link>
                                 </div>
                                 <div className="col-6 publisher-small">
-                                    <Link to="/publisher/jejak-publisher">
+                                    <Link to="/penerbit/jejak-publisher">
                                         <img src={JejakPublisher}/>
                                     </Link>
                                 </div>
                                 <div className="col-6 publisher-small">
-                                    <Link to="/publisher/stiletto-book">
+                                    <Link to="/penerbit/stiletto-book">
                                         <img src={StilettoBook}/>
                                     </Link>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3 col-6">
+                        <div className="col-md-3">
                             <div className="row">
                                 <div className="col-6 publisher-small">
-                                    <Link to="/publisher/one-peach-media">
+                                    <Link to="/penerbit/one-peach-media">
                                         <img src={OnePeachMedia}/>
                                     </Link>
                                 </div>
                                 <div className="col-6 publisher-small">
-                                    <Link to="/publisher/edwrite-publishing">
+                                    <Link to="/penerbit/edwrite-publishing">
                                         <img src={EdwritePublishing}/>
                                     </Link>
                                 </div>
                                 <div className="col-6 publisher-small">
-                                    <Link to="/publisher/ae-publishing">
+                                    <Link to="/penerbit/ae-publishing">
                                         <img src={AePublishing}/>
                                     </Link>
                                 </div>
                                 <div className="col-6 publisher-small">
-                                    <Link to="/publisher/mizan">
+                                    <Link to="/penerbit/mizan">
                                         <img src={Mizan}/>
                                     </Link>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3 col-6 publisher-big">
-                        <Link to="publisher/bentang-pustaka">
+                        <div className="col-md-3 publisher-big">
+                        <Link to="penerbit/bentang-pustaka">
                             <img src={BentangPustaka}/>
                         </Link>
                     </div>

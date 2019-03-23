@@ -8,6 +8,9 @@ import {BrowserRouter} from 'react-router-dom';
 import {store} from './store.js'
 import {Provider} from 'unistore/react'
 
+
+import 'bootstrap/dist/css/bootstrap.css'
+
 // ReactDOM.render(<App />, document.getElementById('root'));
 
 const rootEl = document.getElementById('root');

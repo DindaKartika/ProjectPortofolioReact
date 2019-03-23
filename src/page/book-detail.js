@@ -23,79 +23,79 @@ class BookDetail extends Component {
                     <h1>Resign!</h1>
                     <hr/>
                     <div className="row">
-                        <div className="col-md-4">
+                        <div className="col-lg-4 col-md-6">
                             <img src={Resign}/>
                         </div>
-                        <div className="col-md-5">
+                        <div className="col-lg-5 col-md-6">
                             <div className="row">
-                                <div className="col-md-3">
+                                <div className="col-3">
                                     <label for="judul">Toko</label>
                                 </div>
-                                <div className="col-md-9">
+                                <div className="col-9">
                                     <span>Toko Ada Apa dengan Dia</span>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-3">
+                                <div className="col-3">
                                     <label for="judul">Judul</label>
                                 </div>
-                                <div className="col-md-9">
+                                <div className="col-9">
                                     <span>Resign!</span>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-3">
+                                <div className="col-3">
                                     <label for="harga">Harga</label>
                                 </div>
-                                <div className="col-md-9">
+                                <div className="col-9">
                                     <span>Rp 85.000,00</span>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-3">
+                                <div className="col-3">
                                     <label for="kategori">Kategori</label>
                                 </div>
-                                <div className="col-md-9">
+                                <div className="col-9">
                                     <span>Novel, Metropop, Romance, Office</span>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-3">
+                                <div className="col-3">
                                     <label>Kondisi</label>
                                 </div>
-                                <div className="col-md-9">
+                                <div className="col-9">
                                     <span>Baru</span>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-3">
+                                <div className="col-3">
                                     <label for="isbn">ISBN</label>
                                 </div>
-                                <div className="col-md-9">
+                                <div className="col-9">
                                     <span>9786020380711</span>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-3">
+                                <div className="col-3">
                                     <label for="penulis">Penulis</label>
                                 </div>
-                                <div className="col-md-9">
+                                <div className="col-9">
                                     <span>Almira Bastari</span>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-3">
+                                <div className="col-3">
                                     <label for="penerbit">Penerbit</label>
                                 </div>
-                                <div className="col-md-9">
+                                <div className="col-9">
                                     <span>Gramedia Pustaka Utama</span>
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-3">
+                                <div className="col-3">
                                     <label for="jumlah_halaman">Jumlah Halaman</label>
                                 </div>
-                                <div className="col-md-9">
+                                <div className="col-9">
                                     <span>288</span>
                                 </div>
                             </div>
@@ -106,24 +106,29 @@ class BookDetail extends Component {
                             </div>
                             <Link to="/cart"><button>Beli</button></Link>
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-lg-3">
                             <div className="kurir">
                                 <h4>Kurir</h4>
-                                <img src={JNE}/>
-                                <br/>
-                                <span>JNE</span>
-                                <br/>
-                                <img src={JNT}/>
-                                <br/>
-                                <span>J&T</span>
-                                <br/>
-                                <img src={Pos}/>
-                                <br/>
-                                <span>Pos Indonesia</span>
-                                <br/>
-                                <img src={Wahana}/>
-                                <br/>
-                                <span>Wahana</span>
+                                <div>
+                                    <img src={JNE}/>
+                                    <br/>
+                                    <span>JNE</span>
+                                </div>
+                                <div>
+                                    <img src={JNT}/>
+                                    <br/>
+                                    <span>J&T</span>
+                                </div>
+                                <div>
+                                    <img src={Pos}/>
+                                    <br/>
+                                    <span>Pos Indonesia</span>
+                                </div>
+                                <div>
+                                    <img src={Wahana}/>
+                                    <br/>
+                                    <span>Wahana</span>
+                                </div>
                             </div>
                         </div>
                     </div>

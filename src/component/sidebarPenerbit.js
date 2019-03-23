@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import "./../css/bootstrap.min.css";
 import "./../css/main.css";
 
-const SidebarKategori = props => {
+const SidebarPenerbit = props => {
         return (
             <div className="sidebar">
                 <h1>{props.title}</h1>
@@ -53,8 +53,8 @@ const SidebarKategori = props => {
         );
 }
 
-SidebarKategori.propTypes = {
+SidebarPenerbit.propTypes = {
     title : PropTypes.string.isRequired
 }
 
-export default SidebarKategori;
+export default SidebarPenerbit;

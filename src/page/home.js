@@ -7,15 +7,19 @@ import HomeUp from './../component/homeUp'
 import HomeTrending from './../component/homeTrending'
 import HomePublisher from './../component/homePublisher'
 import HomeCategory from './../component/homeCategory'
+import HomeAdmin from "./../component/homeAdmin"
+import HomeSeller from "./../component/homeSeller"
 
 class Home extends Component {
   render() {
     return (
       <div>
-        <HomeUp />
-        <HomeTrending />
-        <HomePublisher />
-        <HomeCategory />
+        {(localStorage.getItem('status') != 'admin') && <HomeUp />}
+        {(localStorage.getItem('status') == 'penjual') && <HomeSeller />}
+        {(localStorage.getItem('status') != 'admin') && <HomeTrending />}
+        {(localStorage.getItem('status') != 'admin') && <HomePublisher />}
+        {(localStorage.getItem('status') != 'admin') && <HomeCategory />}
+        {(localStorage.getItem('status') == 'admin') && <HomeAdmin />}
       </div>
     );
   }

@@ -13,7 +13,7 @@ import DearNathan from './../image/Book/novel/Dear-Nathan.jpg';
 import Mozachiko from './../image/Book/novel/mozachiko.jpg';
 import Shea from './../image/Book/novel/shea.jpg';
 
-class HomeTrending extends Component{
+class HomeSeller extends Component{
     render(){
         return(
             <div className="container-fluid trending">
@@ -54,4 +54,4 @@ class HomeTrending extends Component{
     }
 }
 
-export default connect("api_key, email, password, full_name, username, is_login", actions)(withRouter(HomeTrending))
+export default connect("api_key, email, password, full_name, username, is_login", actions)(withRouter(HomeSeller))

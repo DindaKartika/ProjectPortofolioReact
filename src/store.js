@@ -3,7 +3,7 @@ import {Provider, connect} from 'unistore/react'
 import axios from 'axios'
 
 const initialStates = {
-    api_key : "",
+    token : 0,
     email : "",
     password : "",
     full_name : "",
@@ -20,25 +20,28 @@ export const actions = store => ({
     postLogout: state =>{
         return {is_login: false};
         // console.log(is_login);
-    },
-    postLogin: async state =>{
-        const data = {username: state.username, password: state.password};
-        await axios
-            .post('https://cobacoba.free.beeceptor.com/login', data)
-            .then(response =>{
-                console.log("postLogin", response.data);
-                if (response.data.hasOwnProperty("api_key")){
-                    store.setState({
-                        is_login: true,
-                        api_key: response.data.api_key,
-                        full_name : response.data.full_name,
-                        email: response.data.email
-                    });
-                    // console.log(this.is_login)
-                }
-            })
-            .catch(error =>{
-                console.log("postLogin err", error);
-            })
     }
+    // postLogin: async state =>{
+    //     await axios
+    //         .get('http://0.0.0.0:5000/login', {
+    //             params:{
+    //                 'username': state.username,
+    //                 'password': state.password
+    //             }
+    //         })
+    //         .then(response =>{
+    //             console.log("postLogin", response.data);
+    //             console.log(response.data.token)
+    //             if (response.data.hasOwnProperty("token")){
+    //                 store.setState({
+    //                     is_login: true,
+    //                     token: response.data.token
+    //                 });
+    //                 // console.log(this.is_login)
+    //             }
+    //         })
+    //         .catch(error =>{
+    //             console.log("postLogin err", error);
+    //         })
+    // }
 })

@@ -1,187 +1,101 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import axios from 'axios'
+import PaginationComponent from "react-reactstrap-pagination";
 
 import "./../css/bootstrap.min.css";
 import "./../css/main.css";
 
 import SidebarKategori from '../component/sidebarKategori'
+import ListBook from '../component/kontenKategori'
 
-class Kategori extends Component {
+const base_url = 'http://0.0.0.0:5000/buku?kategori=';
+
+
+class Kategories extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            Books: [],
+            selectedPage: '1'
+            };
+            this.handleSelected = this.handleSelected.bind(this);
+        }
+
+        componentDidMount = () =>{
+            const self = this;
+            const category = this.props.location.pathname.slice(10)
+            console.log(this.state.selectedPage)
+            axios
+            .get('http://0.0.0.0:5000/buku', {
+                params:{
+                    'kategori': category,
+                    'p' : this.state.selectedPage
+                }
+            })
+            .then(function(response){
+                self.setState({Books: response.data});
+                console.log(response.data);
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+        }
+        
+        componentWillUpdate = () =>{
+            const self = this;
+            const category = this.props.location.pathname.slice(10)
+            console.log(this.state.selectedPage)
+            axios
+            .get('http://0.0.0.0:5000/buku', {
+                params:{
+                    'kategori': category,
+                    'p' : this.state.selectedPage
+                }
+            })
+            .then(function(response){
+                self.setState({Books: response.data});
+                console.log(response.data);
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+        }
+
+        handleSelected(selectedPage) {
+            console.log("selected", selectedPage);
+            this.setState({ selectedPage: selectedPage });
+          }
+
     render() {
+        const {Books} = this.state;
+
         return (
         <div>
-            <section class="isi-tab-kategori">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-2 col-sm-4">
-                            <SidebarKategori/>
+            <section className="isi-tab-kategori">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-2 col-sm-4">
+                            <SidebarKategori title={this.props.location.pathname.slice(10)}/>
                         </div>
-                        <div class="col-md-10 col-sm-8">
-                            <div class="konten-kategori">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <a href="details.html">
-                                        <div class="buku-small">
-                                            <img src="assets/image/Book/novel/resign.jpg"/>
-                                            <br/>
-                                            <span class="judul">Resign!</span>
-                                            <br/>
-                                            <span class="toko">Toko Ada Apa dengan Dia</span>
-                                            <br/>
-                                            <span class="harga">Rp 85.000,00</span>
-                                        </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <a href="details.html">
-                                        <div class="buku-small">
-                                            <img src="assets/image/Book/novel/perahu_kertas.jpg"/>
-                                            <br/>
-                                            <span class="judul">Perahu Kertas</span>
-                                            <br/>
-                                            <span class="toko">Toko Di Sini Ada</span>
-                                            <br/>
-                                            <span class="harga">Rp 73.000,00</span>
-                                        </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <a href="details.html">
-                                        <div class="buku-small">
-                                            <img src="assets/image/Book/novel/spring-in-london.jpg"/>
-                                            <br/>
-                                            <span class="judul">Spring In London</span>
-                                            <br/>
-                                            <span class="toko">Toko Di Sini Senang</span>
-                                            <br/>
-                                            <span class="harga">Rp 120.000,00</span>
-                                        </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <a href="details.html">
-                                        <div class="buku-small">
-                                            <img src="assets/image/Book/novel/autumn-in-paris.jpg"/>
-                                            <br/>
-                                            <span class="judul">Autumn In Paris</span>
-                                            <br/>
-                                            <span class="toko">Toko Aku Cinta Dia</span>
-                                            <br/>
-                                            <span class="harga">Rp 77.000,00</span>
-                                        </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <a href="details.html">
-                                        <div class="buku-small">
-                                            <img src="assets/image/Book/novel/summer-in-seoul.jpg"/>
-                                            <br/>
-                                            <span class="judul">Summer In Seoul</span>
-                                            <br/>
-                                            <span class="toko">Toko Ada Apa dengan Dia</span>
-                                            <br/>
-                                            <span class="harga">Rp 65.000,00</span>
-                                        </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <a href="details.html">
-                                        <div class="buku-small">
-                                            <img src="assets/image/Book/novel/wander-woman.jpg"/>
-                                            <br/>
-                                            <span class="judul">Wander Woman</span>
-                                            <br/>
-                                            <span class="toko">Toko Apa Aja Ada</span>
-                                            <br/>
-                                            <span class="harga">Rp 90.000,00</span>
-                                        </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <a href="details.html">
-                                        <div class="buku-small">
-                                            <img src="assets/image/Book/novel/miss-pesimis.jpg"/>
-                                            <br/>
-                                            <span class="judul">Miss Pesimis</span>
-                                            <br/>
-                                            <span class="toko">Gramedia Pustaka Utama</span>
-                                            <br/>
-                                            <span class="harga">Rp 87.000,00</span>
-                                        </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <Link to="/detail-buku/say-no-to-me">
-                                        <div class="buku-small">
-                                            <img src="assets/image/Book/novel/say-no-to-me.jpg"/>
-                                            <br/>
-                                            <span class="judul">Say No To Me</span>
-                                            <br/>
-                                            <span class="toko">Toko Di Sini Senang</span>
-                                            <br/>
-                                            <span class="harga">Rp 125.000,00</span>
-                                        </div>
-                                        </Link>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <Link to="/detail-buku/arkais">
-                                        <div class="buku-small">
-                                            <img src="assets/image/Book/novel/arkais.jpg"/>
-                                            <br/>
-                                            <span class="judul">Arkais - Tuan Teh dan Nona Kopi</span>
-                                            <br/>
-                                            <span class="toko">Toko Mewek</span>
-                                            <br/>
-                                            <span class="harga">Rp 56.000,00</span>
-                                        </div>
-                                        </Link>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <Link to="/detail-buku/autumn-in-paris">
-                                        <div class="buku-small">
-                                            <img src="assets/image/Book/novel/autumn-in-paris.jpg"/>
-                                            <br/>
-                                            <span class="judul">Autumn In Paris</span>
-                                            <br/>
-                                            <span class="toko">Toko Apa Aja Ada</span>
-                                            <br/>
-                                            <span class="harga">Rp 77.000,00</span>
-                                        </div>
-                                        </Link>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <Link to="/detail-buku/mozachiko">
-                                        <div class="buku-small">
-                                            <img src="assets/image/Book/novel/mozachiko.jpg"/>
-                                            <br/>
-                                            <span class="judul">Mozachiko</span>
-                                            <br/>
-                                            <span class="toko">Toko Sama-Sama</span>
-                                            <br/>
-                                            <span class="harga">Rp 95.000,00</span>
-                                        </div>
-                                        </Link>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <Link to="/detail-buku/miss-pesimis">
-                                        <div class="buku-small">
-                                            <img src="assets/image/Book/novel/miss-pesimis.jpg"/>
-                                            <br/>
-                                            <span class="judul">Miss Pesimis</span>
-                                            <br/>
-                                            <span class="toko">Toko Di Sini Senang</span>
-                                            <br/>
-                                            <span class="harga">Rp 95.000,00</span>
-                                        </div>
-                                        </Link>
-                                    </div>
+                        <div className="col-md-10 col-sm-8">
+                            <div className="konten-kategori">
+                                <div className="row">
+                                {Books.map((item, key) => {
+                                    return <ListBook key ={key} judul={item.judul_buku} image={item.gambar} toko={item.id_toko} harga={item.harga} kondisi={item.kondisi}/>;
+                                })}
                                 </div>
                             </div>
-                            <div class="page">
-                                <span>Page</span>
-                                <button href="/kategori/1" class="active">1</button>
-                                <button href="/kategori/2">2</button>
-                                <button href="/kategori/3">3</button>
+                            <div className="pages">
+                                <div className="page">
+                                    <span>Page</span>
+                                    <PaginationComponent
+                                    totalItems={50}
+                                    pageSize={3}
+                                    onSelect={this.handleSelected}
+                                    maxPaginationNumbers={5}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -192,4 +106,4 @@ class Kategori extends Component {
     }
 }
 
-export default Kategori;
+export default Kategories;

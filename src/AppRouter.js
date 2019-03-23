@@ -13,6 +13,7 @@ class AppAjax extends Component{
         // localStorage.removeItem('is_login');
         // localStorage.clear()
         this.props.postLogout();
+        localStorage.setItem('status', 'public');
         this.props.history.push("/");
     };
     render() {

@@ -18,16 +18,8 @@ class HomeCategory extends Component{
                     <div className="col-md-2 col-6">
                         <h2>Kategori</h2>
                     </div>
-                    <div className="col-md-7 d-md-block d-none">
+                    <div className="col-md-9 d-md-block d-none">
                         <div className="garis"></div>
-                    </div>
-                    <div className="col-md-3 col-6">
-                        <div className="telusuri">
-                        <Link to="/kategori" className="baca-selengkapnya">
-                            <span>Telusuri lebih banyak</span>
-                            <img className="arrow" src={Arrow}/>
-                        </Link>
-                        </div>
                     </div>
                 </div>
                 <div className="categories">
@@ -47,9 +39,9 @@ class HomeCategory extends Component{
                             </Link>
                         </div>
                         <div className="col-lg-2 col-md-3 col-6">
-                            <Link to="/kategori/anak">
+                            <Link to="/kategori/anak-anak">
                                 <div className="isi-kategori">
-                                    <span>Anak</span>
+                                    <span>Anak-Anak</span>
                                 </div>
                             </Link>
                         </div>
