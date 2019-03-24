@@ -11,6 +11,7 @@ import {actions} from './../store.js';
 import {withRouter} from 'react-router-dom';
 
 import Exit from './../image/icon/exit.png'
+import User from './user.js'
 
 import HeaderHidden from './HeaderHidden.js'
 
@@ -23,35 +24,28 @@ class Header extends Component{
           explores: false,
           name: "",
           status: "",
-          is_login: true
+          username: "",
+          password: "",
+          is_login: true,
+          token: ""
         }
     
         this.toggle = this.toggle.bind(this);
         this.openExplore = this.openExplore.bind(this);
-        this.componentWillUpdate = this.componentWillUpdate.bind(this);
-        this.postLogin = this.postLogin.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.afterLogin = this.afterLogin.bind(this);
+        this.signUp = this.signUp.bind(this);
+        this.forgetPass = this.forgetPass.bind(this);
       }
-
-    //   postSignin = () =>{
-    //     this.props.postLogin()
-    //         .then(() =>{
-    //             console.log('this',this);
-    //             this.props.history.replace('/')
-    //         })
-    // };
 
       state = {username:"", password:""};
       changeInput = e =>{
           this.setState({[e.target.name]: e.target.value});
       };
 
-      postLogin = () =>{
+      afterLogin(){
         const self = this;
-        const data={
-            username: this.state.username,
-            password: this.state.password
-        };
-        console.log('data', data);
+        const {username, password} = this.state;
           axios
               .get('http://0.0.0.0:5000/login', {
                 params:{
@@ -63,17 +57,18 @@ class Header extends Component{
                   if (response.data.hasOwnProperty("token")){
                     localStorage.setItem('token', response.data.token);
                     localStorage.setItem('is_login', true);
+                    this.setState({is_login: true})
                     console.log(response.data)
-                    console.log(self.props.history.push("/"))
-                    this.props.history.push("/signup");
+                    this.setState({modal:false})
+                    this.props.history.push("/");
                   }
               })
               .catch(error => {
                   console.log(error);
               });
       };
-
-    componentWillUpdate = () =>{
+    
+      componentDidMount = () =>{
         const tokens = localStorage.getItem('token')
         axios
         .get('http://0.0.0.0:5000/member/me', {
@@ -119,7 +114,9 @@ class Header extends Component{
         }
 
     render(){
-        if(!this.props.is_login){
+        const {name, status} = this.state;
+        const is_login = JSON.parse(localStorage.getItem('is_login'))
+        if(is_login === null){
             return(
                     <div className="container-fluid">
                         <div className="header-atas d-md-block d-none">
@@ -165,17 +162,17 @@ class Header extends Component{
                         <ModalBody>
                                 <label for="username">Username</label>
                                 <br/>
-                                <input type="text" name="username" placeholder="Username" onChange={e => this.changeInput(e)}/>
+                                <input type="text" name="username" placeholder="Username" onChange={e => this.changeInput(e)} required/>
                                 <br/>
                                 <label for="password">Password</label>
                                 <br/>
-                                <input type="password" name="password" placeholder="Password" onChange={e => this.changeInput(e)}/>
+                                <input type="password" name="password" placeholder="Password" onChange={e => this.changeInput(e)} required/>
                                 <br/>
                                 <span onClick={() =>this.forgetPass()} className="forgetPass">Lupa Password?</span>
                                 <br/>
-                                <button onClick={() =>this.postLogin()} className="buttonModal">Masuk</button>
+                                <button onClick={this.afterLogin} className="buttonModal">Masuk</button>
                             <span>Belum Punya Akun?</span>
-                            <button className="buttonModal signUp" onClick={() =>this.signUp()}>Daftar</button>
+                            <button className="buttonModal signUp" onClick={this.signUp}>Daftar</button>
                         </ModalBody>
                         <ModalFooter>
                         </ModalFooter>
@@ -189,7 +186,7 @@ class Header extends Component{
                     <div className="container-fluid">
                         <div className="header-atas d-md-block d-none">
                             <div className="row">
-                                <div className="col-lg-2 col-md-4"><label>Halo, {this.state.name}</label></div>
+                                <div className="col-lg-2 col-md-4"><User/></div>
                                 <div className="col-lg-4 d-lg-block d-none"></div>
                                 <div className="col-lg-6 col-md-8">
                                     <ul className="nav">
@@ -215,7 +212,7 @@ class Header extends Component{
                                     <ul className="nav">
                                         <li className="nav-item nav-bawah"><button onClick={this.openExplore} style={{display: (localStorage.getItem('status') == 'admin') ? 'none' : 'block' }}>Explore</button></li>
                                         <li className="nav-item nav-bawah"><Link to="/cart" className="nav-link" style={{display: (localStorage.getItem('status') == 'admin') ? 'none' : 'block' }}>Cart</Link></li>
-                                        <li className="nav-item nav-bawah"><button onClick={() =>this.props.postSignOut()}>Log Out</button></li>
+                                        <li className="nav-item nav-bawah"><Link to="/" className="nav-link" onClick={() =>this.props.postSignOut()} >Log Out</Link></li>
                                     </ul>
                                 </div>
                                 <div>

@@ -16,7 +16,7 @@ import JNT from './../image/logo/j&t.png'
 import Pos from './../image/logo/pos.png'
 import Wahana from './../image/logo/wahana.png'
 
-class BookDetail extends Component {
+class BookInfo extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -26,22 +26,17 @@ class BookDetail extends Component {
             method:{},
             qty: 1
             };
-            this.minusFunction = this.minusFunction.bind(this);
-            this.plusFunction = this.plusFunction.bind(this);
-            this.beli = this.beli.bind(this);
         }
 
     componentDidMount = () =>{
         const self = this;
-        const id_buku = this.props.location.pathname.slice(13)
+        const id_buku = this.props.location.pathname.slice(10)
         console.log(id_buku)
         axios
-        .get('http://0.0.0.0:5000/buku/' + id_buku)
+        .get('http://0.0.0.0:5000/toko/buku/' + id_buku)
         .then(function(response){
             self.setState({Books: response.data});
             self.setState({Details: response.data.detail})
-            self.setState({Shop: response.data.shop})
-            self.setState({method: response.data.kurir})
             localStorage.setItem('book', response.data)
             localStorage.setItem('shop', response.data.shop)
             localStorage.setItem('kurir', response.data.kurir)
@@ -51,52 +46,6 @@ class BookDetail extends Component {
         .catch(function(error){
             console.log(error);
         })
-    }
-
-    beli(){
-        const self = this;
-        const {Books} = this.state;
-        const {method} = this.state;
-        const data={
-            id_buku: Books.id_buku,
-            jumlah: this.state.qty,
-            id_metode_pengiriman : method.id_metode_pengiriman
-        };
-
-        console.log(data)
-
-        const tokens = localStorage.getItem('token')
-        axios
-        .post('http://0.0.0.0:5000/pembelian/me', data, {
-            headers:{
-                'Authorization' : 'Bearer ' + tokens
-            }
-        })
-        .then(response => {
-            localStorage.setItem('pembelian', response.data);
-            console.log(response.data)
-            console.log(self.props.history.push("/cart"))
-            self.props.history.push("/cart");
-        })
-        .catch(error => {
-            console.log(error);
-        })
-    }
-
-    minusFunction(){
-        const nowqty = this.state.qty
-        if (this.state.qty >1){
-            const newqty = nowqty - 1
-            this.setState({qty: newqty})
-            localStorage.setItem('qty', newqty)
-        }
-    }
-    
-    plusFunction(){
-        const nowqty = this.state.qty
-        const newqty = nowqty + 1
-        this.setState({qty: newqty})
-        localStorage.setItem('qty', newqty)
     }
 
     render() {
@@ -187,37 +136,6 @@ class BookDetail extends Component {
                                     <span>{Details.jumlah_halaman}</span>
                                 </div>
                             </div>
-                            <div className="jumlah">
-                                <img src={Minus} className="qty" id="plus" onClick={this.minusFunction}/>
-                                <input type="text" value={this.state.qty} id="book-qty"/>
-                                <img src={Plus} className="qty" id="minus" onClick={this.plusFunction}/>
-                            </div>
-                            <button onClick={this.beli}>Beli</button>
-                        </div>
-                        <div className="col-lg-3">
-                            <div className="kurir">
-                                <h4>Kurir</h4>
-                                <div>
-                                    <img src={JNE}/>
-                                    <br/>
-                                    <span>JNE</span>
-                                </div>
-                                <div>
-                                    <img src={JNT}/>
-                                    <br/>
-                                    <span>J&T</span>
-                                </div>
-                                <div>
-                                    <img src={Pos}/>
-                                    <br/>
-                                    <span>Pos Indonesia</span>
-                                </div>
-                                <div>
-                                    <img src={Wahana}/>
-                                    <br/>
-                                    <span>Wahana</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <hr/>
@@ -236,4 +154,4 @@ class BookDetail extends Component {
     }
 }
 
-export default withRouter(BookDetail)
+export default withRouter(BookInfo)

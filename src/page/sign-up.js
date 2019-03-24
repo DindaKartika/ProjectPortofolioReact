@@ -14,8 +14,8 @@ class SignUp extends Component {
     postSignUp = () =>{
         const {namadepan, namabelakang, username, email, password} = this.state;
         const data={
-            namadepan: namadepan,
-            namabelakang: namabelakang,
+            nama_depan: namadepan,
+            nama_belakang: namabelakang,
             username: username,
             email: email,
             password: password
@@ -33,24 +33,43 @@ class SignUp extends Component {
     };
   render() {console.log('state', this.state);
     return (
-      <section className="content signin">
+      <section className="signup-box">
         <form onSubmit={e => e.preventDefault()}>
-            <h4>Sign In</h4>
-            <div>
-                <input type="text" name="namadepan" placeholder="Nama Depan" onChange={e => this.changeInput(e)}/>
+            <h1>Sign Up</h1>
+            <hr/>
+            <div className="row">
+                <div className="col-md-3 col-4">
+                    <label>Nama Depan</label>
+                </div>
+                <div className="col-md-9 col-8">
+                    <input type="text" name="namadepan" placeholder="Nama Depan" onChange={e => this.changeInput(e)}/>
+                </div>
+                <div className="col-md-3 col-4">
+                    <label>Nama Belakang</label>
+                </div>
+                <div className="col-md-9 col-8">
+                    <input type="text" name="namabelakang" placeholder="Nama Belakang" onChange={e => this.changeInput(e)}/>
+                </div>
+                <div className="col-md-3 col-4">
+                    <label>Username</label>
+                </div>
+                <div className="col-md-9 col-8">
+                    <input type="text" name="username" placeholder="Username" onChange={e => this.changeInput(e)}/>
+                </div>
+                <div className="col-md-3 col-4">
+                    <label>Email</label>
+                </div>
+                <div className="col-md-9 col-8">
+                    <input type="email" name="email" placeholder="Email" onChange={e => this.changeInput(e)}/>
+                </div>
+                <div className="col-md-3 col-4">
+                    <label>Password</label>
+                </div>
+                <div className="col-md-9 col-8">
+                    <input type="password" name="password" placeholder="Password" onChange={e => this.changeInput(e)}/>
+                </div>
             </div>
-            <div>
-                <input type="text" name="namabelakang" placeholder="Nama Belakang" onChange={e => this.changeInput(e)}/>
-            </div>
-            <div>
-                <input type="text" name="username" placeholder="Username" onChange={e => this.changeInput(e)}/>
-            </div>
-            <div>
-                <input type="email" name="email" placeholder="Email" onChange={e => this.changeInput(e)}/>
-            </div>
-            <div>
-                <input type="password" name="password" placeholder="Password" onChange={e => this.changeInput(e)}/>
-            </div>
+            <br/>
             <button onClick={() =>this.postSignUp()}>Sign Up</button>
             <button type="reset">Reset</button>
         </form>

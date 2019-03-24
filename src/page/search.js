@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 import PaginationComponent from "react-reactstrap-pagination";
 
@@ -7,16 +8,44 @@ import "./../css/bootstrap.min.css";
 import "./../css/main.css";
 
 import FilterSearch from "./../component/FilterSearch.js"
+import ListBook from '../component/kontenKategori'
 
-class Kategori extends Component {
+class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          filter: false
+          filter: false,
+          Books: [],
+        selectedPage: 1
         };
     
         this.openFilter = this.openFilter.bind(this);
+        this.handleSelected = this.handleSelected.bind(this);
       }
+
+        componentDidMount = (selectedPage) =>{
+            const self = this;
+            const category = this.props.location.pathname.slice(9)
+            axios
+            .get('http://0.0.0.0:5000/buku', {
+                params:{
+                    'judul_buku': category,
+                    'p' : selectedPage
+                }
+            })
+            .then(function(response){
+                self.setState({Books: response.data});
+                console.log(response.data);
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+        }
+
+        handleSelected(selectedPage) {
+            console.log("selected", selectedPage);
+            this.setState({ selectedPage: selectedPage });
+          }
 
       openFilter() {
         this.setState(prevState => ({
@@ -25,6 +54,7 @@ class Kategori extends Component {
         }
 
     render() {
+        const {Books} = this.state;
         return (
         <div>
             <section class="isi-tab-kategori">
@@ -59,58 +89,9 @@ class Kategori extends Component {
                     <div class="col-lg-10 col-md-8">
                     <div class="konten-kategori">
                         <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <Link to="/detail-buku/arkais">
-                            <div class="buku-small">
-                                <img src="assets/image/Book/novel/resign.jpg"/>
-                                <br/>
-                                <span class="judul">Resign!</span>
-                                <br/>
-                                <span class="toko">Toko Ada Apa dengan Dia</span>
-                                <br/>
-                                <span class="harga">Rp 85.000,00</span>
-                            </div>
-                            </Link>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <Link to="/detail-buku/perahu kertas">
-                            <div class="buku-small">
-                                <img src="assets/image/Book/novel/perahu_kertas.jpg"/>
-                                <br/>
-                                <span class="judul">Perahu Kertas</span>
-                                <br/>
-                                <span class="toko">Toko Di Sini Ada</span>
-                                <br/>
-                                <span class="harga">Rp 73.000,00</span>
-                            </div>
-                            </Link>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <Link to="/detail-buku/spring in london">
-                            <div class="buku-small">
-                                <img src="assets/image/Book/novel/spring-in-london.jpg"/>
-                                <br/>
-                                <span class="judul">Spring In London</span>
-                                <br/>
-                                <span class="toko">Toko Di Sini Senang</span>
-                                <br/>
-                                <span class="harga">Rp 120.000,00</span>
-                            </div>
-                            </Link>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <Link to="/detail/autumn in paris">
-                            <div class="buku-small">
-                                <img src="assets/image/Book/novel/autumn-in-paris.jpg"/>
-                                <br/>
-                                <span class="judul">Autumn In Paris</span>
-                                <br/>
-                                <span class="toko">Toko Aku Cinta Dia</span>
-                                <br/>
-                                <span class="harga">Rp 77.000,00</span>
-                            </div>
-                            </Link>
-                        </div>
+                        {Books.map((item, key) => {
+                            return <ListBook key ={key} judul={item.judul_buku} image={item.gambar} toko={item.id_toko} harga={item.harga} kondisi={item.kondisi}/>;
+                        })}
                         </div>
                     </div>
                     <div className="pages">
@@ -133,4 +114,4 @@ class Kategori extends Component {
     }
 }
 
-export default Kategori;
+export default Search;

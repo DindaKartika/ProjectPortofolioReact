@@ -7,12 +7,13 @@ import "./../css/bootstrap.min.css";
 import "./../css/main.css";
 
 import SidebarKategori from '../component/sidebarKategori'
-import ListBook from '../component/kontenKategori'
+import ListBooks from '../component/kontenProduct'
+import SidebarProduct from "../component/sidebarProduct";
 
 const base_url = 'http://0.0.0.0:5000/buku?kategori=';
 
 
-class Kategories extends Component {
+class Product extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -24,13 +25,15 @@ class Kategories extends Component {
 
         componentDidMount = () =>{
             const self = this;
-            const category = this.props.location.pathname.slice(10)
+            const tokens = localStorage.getItem('token')
             console.log(this.state.selectedPage)
             axios
-            .get('http://0.0.0.0:5000/buku', {
+            .get('http://0.0.0.0:5000/toko/buku', {
                 params:{
-                    'kategori': category,
                     'p' : this.state.selectedPage
+                },
+                headers:{
+                    'Authorization' : 'Bearer ' + tokens
                 }
             })
             .then(function(response){
@@ -46,11 +49,15 @@ class Kategories extends Component {
             const self = this;
             const category = this.props.location.pathname.slice(10)
             console.log(this.state.selectedPage)
+            const tokens = localStorage.getItem('token')
             axios
-            .get('http://3.1.132.156:5000/buku', {
+            .get('http://3.1.132.156:5000/toko/buku', {
                 params:{
                     'kategori': category,
                     'p' : this.state.selectedPage
+                },
+                headers:{
+                    'Authorization' : 'Bearer ' + tokens
                 }
             })
             .then(function(response){
@@ -76,13 +83,13 @@ class Kategories extends Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-2 col-sm-4">
-                            <SidebarKategori title={this.props.location.pathname.slice(10)}/>
+                            <SidebarProduct/>
                         </div>
                         <div className="col-md-10 col-sm-8">
                             <div className="konten-kategori">
                                 <div className="row">
                                 {Books.map((item, key) => {
-                                    return <ListBook key ={key} id={item.id_buku} judul={item.judul_buku} image={item.gambar} toko={item.id_toko} harga={item.harga} kondisi={item.kondisi}/>;
+                                    return <ListBooks key ={key} id={item.id_buku} judul={item.judul_buku} image={item.gambar} toko={item.id_toko} harga={item.harga} kondisi={item.kondisi}/>;
                                 })}
                                 </div>
                             </div>
@@ -97,6 +104,7 @@ class Kategories extends Component {
                                     />
                                 </div>
                             </div>
+                            <Link to="/tambah-buku"><button>Tambah</button></Link>
                         </div>
                     </div>
                 </div>
@@ -106,4 +114,4 @@ class Kategories extends Component {
     }
 }
 
-export default Kategories;
+export default Product;

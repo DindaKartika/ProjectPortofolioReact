@@ -27,7 +27,7 @@ class Penerbits extends Component {
             const publisher = this.props.location.pathname.slice(10)
             console.log(publisher)
             axios
-            .get('http://0.0.0.0:5000/toko/buku/detail_buku', {
+            .get('http://0.0.0.0:5000/buku', {
                 params:{
                     'penerbit': publisher,
                     'p' : selectedPage
@@ -48,45 +48,42 @@ class Penerbits extends Component {
           }
 
     render() {
-        const Books = this.state;
+        const {Books} = this.state;
 
         return (
-            <div>
-                <section class="isi-tab-kategori">
-                    <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-4">
-                        <div class="sidebar">
-                            <div className="row">
-                                <div className="col-lg-12 col-6"><h5>{this.props.location.pathname.slice(10)}</h5></div>
+        <div>
+            <section className="isi-tab-kategori">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-2 col-sm-4">
+                            <SidebarKategori title={this.props.location.pathname.slice(10)}/>
+                        </div>
+                        <div className="col-md-10 col-sm-8">
+                            <div className="konten-kategori">
+                                <div className="row">
+                                {Books.map((item, key) => {
+                                    console.log(item)
+                                    return <ListBook key ={key} id={item.id_buku} judul={item.judul_buku} image={item.gambar} toko={item.id_toko} harga={item.harga} kondisi={item.kondisi}/>;
+                                })}
+                                </div>
                             </div>
-                        </div>
-                        </div>
-                        <div class="col-lg-10 col-md-8">
-                        <div class="konten-kategori">
-                            <div class="row">
-                            {/* {Books.map((item, key) => {
-                                    return <ListBook key ={key} judul={item.judul_buku} image={item.gambar} toko={item.id_toko} harga={item.harga} kondisi={item.kondisi}/>;
-                                })} */}
+                            <div className="pages">
+                                <div className="page">
+                                    <span>Page</span>
+                                    <PaginationComponent
+                                    totalItems={50}
+                                    pageSize={3}
+                                    onSelect={this.handleSelected}
+                                    maxPaginationNumbers={5}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <div className="pages">
-                            <div className="page">
-                                <span>Page</span>
-                                <PaginationComponent
-                                totalItems={50}
-                                pageSize={3}
-                                onSelect={this.handleSelected}
-                                maxPaginationNumbers={5}
-                                />
-                            </div>
-                        </div>
                         </div>
                     </div>
-                    </div>
-                </section>
-            </div>
-            );
+                </div>
+            </section>
+        </div>
+        );
     }
 }
 

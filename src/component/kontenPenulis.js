@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
 import "./../css/bootstrap.min.css";
 import "./../css/main.css";
 
@@ -9,7 +8,7 @@ import "./../css/main.css";
 const ListBook = props => {
     return(
         <div className="col-lg-3 col-md-4 col-sm-6">
-            <Link to={"/detail-buku/"+props.id}>
+            <Link to={"/info-buku/"+props.id}>
             <div className="buku-small">
                 <img src={props.image}/>
                 <br/>

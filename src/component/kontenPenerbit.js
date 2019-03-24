@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import "./../css/bootstrap.min.css";
 import "./../css/main.css";
 
@@ -7,7 +8,7 @@ import "./../css/main.css";
 const ListBook = props => {
     return(
         <div className="col-lg-3 col-md-4 col-sm-6">
-            {/* <Link to="/detail/"*{props.judul}> */}
+            <Link to={"/detail-buku/"+props.id}>
             <div className="buku-small">
                 <img src={props.image}/>
                 <br/>
@@ -24,12 +25,13 @@ const ListBook = props => {
                     </div>
                 </div>
             </div>
-            {/* </Link> */}
+            </Link>
         </div>
     )
 }
 
 ListBook.propTypes = {
+    id: PropTypes.number,
     image : PropTypes.string.isRequired,
     judul : PropTypes.string.isRequired,
     toko : PropTypes.number,

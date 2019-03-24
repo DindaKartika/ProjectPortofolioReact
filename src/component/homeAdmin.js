@@ -15,55 +15,55 @@ class HomeAdmin extends Component{
         return(
             <section className="isi-index-admin">
                 <div className="container">
-                    <a href="member-admin.html">
+                    <Link to="/admin/member">
                         <div className="content-index-admin">
                             <h2>Member</h2>
                             <span>100 Member</span>
                             <br/>
                             <span>25 Penjual</span>
                         </div>
-                    </a>
+                    </Link>
                 </div>
                 <div className="container">
-                    <a href="toko-admin.html">
+                    <Link to="/admin/toko">
                         <div className="content-index-admin">
                             <h2>Toko</h2>
                             <span>25 Toko Active</span>
                             <br/>
                             <span>0 Toko Inactive</span>
                         </div>
-                    </a>
+                    </Link>
                 </div>
                 <div className="container">
-                    <a href="buku-admin.html">
+                    <Link to="/admin/buku">
                         <div className="content-index-admin">
                             <h2>Buku</h2>
                             <span>75 Buku</span>
                         </div>
-                    </a>
+                    </Link>
                 </div>
                 <div className="container">
-                    <a href="metode-pembayaran-admin.html">
+                    <Link to="/admin/metode-pembayaran">
                         <div className="content-index-admin">
                             <h2>Metode Pembayaran</h2>
                             <span>10 Metode Pembayaran Active</span>
                             <br/>
                             <span>1 Metode Pembayaran Disabled</span>
                         </div>
-                    </a>
+                    </Link>
                 </div>
                 <div className="container">
-                    <a href="metode-pengiriman-admin.html">
+                    <Link to="/admin/metode-pengiriman">
                         <div className="content-index-admin">
                             <h2>Metode Pengiriman</h2>
                             <span>6 Metode Pengiriman Active</span>
                             <br/>
                             <span>0 Metode Pengiriman Disabled</span>
                         </div>
-                    </a>
+                    </Link>
                 </div>
                 <div className="container">
-                    <a href="cart-admin.html">
+                    <Link to="/admin/cart">
                         <div className="content-index-admin">
                             <h2>Cart</h2>
                             <span>30 Cart Unfinished</span>
@@ -72,10 +72,10 @@ class HomeAdmin extends Component{
                             <br/>
                             <span>25 Cart Finished</span>
                         </div>
-                    </a>
+                    </Link>
                 </div>
                 <div className="container">
-                    <a href="transaction-admin.html">
+                    <Link to="/admin/transaksi">
                         <div className="content-index-admin">
                             <h2>Transaksi</h2>
                             <span>6 Metode Staged</span>
@@ -84,7 +84,7 @@ class HomeAdmin extends Component{
                             <br/>
                             <span>25 Metode Finished</span>
                         </div>
-                    </a>
+                    </Link>
                 </div>
             </section>
         )

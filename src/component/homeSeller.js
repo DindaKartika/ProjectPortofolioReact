@@ -12,44 +12,37 @@ import Arkais from './../image/Book/novel/arkais.jpg';
 import DearNathan from './../image/Book/novel/Dear-Nathan.jpg';
 import Mozachiko from './../image/Book/novel/mozachiko.jpg';
 import Shea from './../image/Book/novel/shea.jpg';
-
 class HomeSeller extends Component{
     render(){
         return(
-            <div className="container-fluid trending">
+            <div className="container-fluid categories">
                 <div className="row">
                     <div className="col-md-3 col-6">
-                        <h2 className="main-index-styling">Trending</h2>
+                        <h2 className="main-index-styling">My Shop</h2>
                     </div>
-                    <div className="col-md-6 d-md-block d-none">
+                    <div className="col-md-7 d-md-block d-none">
                         <div className="garis"></div>
                     </div>
-                    <div className="col-md-3 col-6">
+                    <div className="col-md-2 col-6">
                         <div className="telusuri">
                             <a className="baca-selengkapnya" href="trending.html">
-                                <span>Telusuri lebih banyak</span>
+                                <span>Open</span>
                                 <img className="arrow" src={Arrow}/>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div className="book-big">
-                    <div className="row">
-                    <div className="col-lg-3 col-md-6">
-                        <Link to="/search"><img src={Arkais}/></Link>
+                <div className="row">
+                    <div className="col-md-6">
+                        <h4>Produk Saya</h4>
+                        <Link to="/produk-saya"><span className="isi-kategori">Produk saya</span></Link>
                     </div>
-                    <div className="col-lg-3 col-md-6">
-                        <Link to="/search"><img src={DearNathan}/></Link>
-                    </div>
-                    <div className="col-lg-3 col-md-6">
-                        <Link to="/search"><img src={Mozachiko}/></Link>
-                    </div>
-                    <div className="col-lg-3 col-md-6">
-                        <Link to="/search"><img src={Shea}/></Link>
+                    <div className="col-md-6">
+                        <h4>Pesanan Masuk</h4>
+                        <Link to="/pesanan-saya"><span className="isi-kategori">Pesanan</span></Link>
                     </div>
                 </div>
             </div>
-        </div>
         )
     }
 }

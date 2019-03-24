@@ -1,139 +1,110 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 import "./../css/bootstrap.min.css";
 import "./../css/main.css";
+import ViewDetailMember from './../component/memberDetail.js'
+import ListBuy from './../component/kontenCart.js'
 // import "./App.css"
+import PilihanPembayaran from './../component/pilihanPembayaran.js'
 
-import Resign from './../image/Book/novel/resign.jpg'
-import Minus from './../image/icon/minus-blue.png'
-import Plus from './../image/icon/plus.png'
+class Cart extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            Cart: {},
+            Pembelian: []
+            };
+        this.Bayar = this.Bayar.bind(this)
+        }
 
-import JNE from './../image/logo/jne.png'
-import JNT from './../image/logo/j&t.png'
-import Pos from './../image/logo/pos.png'
-import Wahana from './../image/logo/wahana.png'
+    componentDidMount = () =>{
+        const self = this;
+        const tokens = localStorage.getItem('token')
+        axios
+        .get('http://0.0.0.0:5000/cart/me', {
+            headers:{
+                'Authorization' : 'Bearer ' + tokens
+            }
+        }
+        )
+        .then(function(response){
+            self.setState({Cart: response.data});
+            localStorage.setItem(Cart, response.data)
+            self.setState({Pembelian: response.data.pembelian})
+            console.log(response.data.pembelian)
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    }
 
-class BookDetail extends Component {
+    Bayar(){
+        const {Cart} = this.state;
+        const data={
+            id_cart: Cart.id_cart,
+            id_metode_pembayaran: 1
+        };
+        const tokens = localStorage.getItem('token')
+        const self = this;
+        axios
+            .post('http://0.0.0.0:5000/transaksi/me', data, {headers:{
+                'Authorization' : 'Bearer ' + tokens
+            }})
+            .then(function(response){
+                console.log(response.data);
+                self.props.history.push('/');
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+    };
+
     render() {
+        const {Cart} = this.state;
+        const {Pembelian} = this.state;
+        console.log('pembelian', Pembelian)
+        console.log(Cart)
         return (
         <div>
             <section className="isi-details">
-                <div className="details-box">
-                    <h1>Resign!</h1>
-                    <hr/>
-                    <div className="row">
-                        <div className="col-md-4">
-                            <img src={Resign}/>
+                <h2>Cart</h2>
+                <div className="row">
+                    <div className="col-md-8">
+                        <div className="details-box">
+                            <ViewDetailMember />
                         </div>
-                        <div className="col-md-5">
-                            <div className="row">
-                                <div className="col-md-3">
-                                    <label for="judul">Toko</label>
-                                </div>
-                                <div className="col-md-9">
-                                    <span>Toko Ada Apa dengan Dia</span>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-md-3">
-                                    <label for="judul">Judul</label>
-                                </div>
-                                <div className="col-md-9">
-                                    <span>Resign!</span>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-md-3">
-                                    <label for="harga">Harga</label>
-                                </div>
-                                <div className="col-md-9">
-                                    <span>Rp 85.000,00</span>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-md-3">
-                                    <label for="kategori">Kategori</label>
-                                </div>
-                                <div className="col-md-9">
-                                    <span>Novel, Metropop, Romance, Office</span>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-md-3">
-                                    <label>Kondisi</label>
-                                </div>
-                                <div className="col-md-9">
-                                    <span>Baru</span>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-md-3">
-                                    <label for="isbn">ISBN</label>
-                                </div>
-                                <div className="col-md-9">
-                                    <span>9786020380711</span>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-md-3">
-                                    <label for="penulis">Penulis</label>
-                                </div>
-                                <div className="col-md-9">
-                                    <span>Almira Bastari</span>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-md-3">
-                                    <label for="penerbit">Penerbit</label>
-                                </div>
-                                <div className="col-md-9">
-                                    <span>Gramedia Pustaka Utama</span>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-md-3">
-                                    <label for="jumlah_halaman">Jumlah Halaman</label>
-                                </div>
-                                <div className="col-md-9">
-                                    <span>288</span>
-                                </div>
-                            </div>
-                            <div className="jumlah">
-                                <img src={Minus} className="qty" id="plus" onclick="minusFunction()"/>
-                                <input type="text" value="1" id="book-qty"/>
-                                <img src={Plus} className="qty" id="minus" onclick="plusFunction()"/>
-                            </div>
-                            <Link to="/cart"><button>Beli</button></Link>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="kurir">
-                                <h4>Kurir</h4>
-                                <img src={JNE}/>
-                                <br/>
-                                <span>JNE</span>
-                                <br/>
-                                <img src={JNT}/>
-                                <br/>
-                                <span>J&T</span>
-                                <br/>
-                                <img src={Pos}/>
-                                <br/>
-                                <span>Pos Indonesia</span>
-                                <br/>
-                                <img src={Wahana}/>
-                                <br/>
-                                <span>Wahana</span>
-                            </div>
+                        <div className="details-box">
+                            <h4>Pembelian</h4>
+                            {Pembelian.map((item, key) => {
+                                return <ListBuy key ={key} id={item.id_pembelian} judul={item.id_buku} toko={item.id_toko} harga={item.total_harga} jumlah={item.jumlah} metode_pengiriman={item.id_metode_pengiriman}/>;
+                            })}
                         </div>
                     </div>
-                    <hr/>
-                    <div className="row">
-                        <div className="col-md-2">
-                            <label for="sinopsis">Sinopsis</label>
-                        </div>
-                        <div className="col-md-10">
-                            <p>Kompetisi sengit terjadi di sebuah kantor konsultan di Jakarta. Pesertanya adalah para cungpret, alias kacung kampret. Yang mereka incar bukanlah penghargaan pegawai terbaik, jabatan tertinggi, atau bonus terbesar, melainkan memenangkan taruhan untuk segera resign! Cungpret #1: Alranita Pegawai termuda yang tertekan akibat perlakuan sang bos yang semena-mena. Cungpret #2: Carlo Pegawai yang baru menikah dan ingin mencari pekerjaan dengan gaji lebih tinggi. Cungpret #3: Karenina Pegawai senior yang selalu dianggap tidak becus tapi terus-menerus dijejali proyek baru. Cungpret #4: Andre Pegawai senior kesayangan si bos yang berniat resign demi dapat menikmati kehidupan keluarga yang lebih normal dan seimbang. Sang Bos: Tigran Pemimpin genius, misterius, dan arogan, tapi sukses dipercaya untuk memimpin timnya sendiri pada usianya yang masih cukup muda. Resign sebenarnya tidak sulit dilakukan. Namun kalau kamu memiliki bos yang punya radar sangat kuat seperti Tigran, semua usahamu pasti akan terbaca olehnya. Pertanyaannya, siapakah yang akan menang?</p>
+                    <div className="col-md-4">
+                        <div className="details-box">
+                            <h4>Pembayaran</h4>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <label>Total barang</label>
+                                </div>
+                                <div className="col-md-6">
+                                    <label>{Cart.total_barang}</label>
+                                </div>
+                                <div className="col-md-6">
+                                    <label>Total pembayaran</label>
+                                </div>
+                                <div className="col-md-6">
+                                    <label>Rp {Cart.total_pembayaran},00</label>
+                                </div>
+                            </div>
+                            <p>* harga belum termasuk biaya pengiriman</p>
+                            <br/>
+                            <h4>Pembayaran : </h4>
+                            <label>Transfer Bank XYZ</label>
+                            <label>Rekening : 093210484324</label>
+                            <button onClick={this.Bayar}>Bayar</button>
                         </div>
                     </div>
                 </div>
@@ -143,4 +114,4 @@ class BookDetail extends Component {
     }
 }
 
-export default BookDetail;
+export default Cart;

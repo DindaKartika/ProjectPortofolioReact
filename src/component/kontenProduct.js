@@ -6,10 +6,10 @@ import "./../css/bootstrap.min.css";
 import "./../css/main.css";
 
 
-const ListBook = props => {
+const ListBooks = props => {
     return(
         <div className="col-lg-3 col-md-4 col-sm-6">
-            <Link to={"/detail-buku/"+props.id}>
+            <Link to={"/info-buku/"+props.id}>
             <div className="buku-small">
                 <img src={props.image}/>
                 <br/>
@@ -31,7 +31,7 @@ const ListBook = props => {
     )
 }
 
-ListBook.propTypes = {
+ListBooks.propTypes = {
     id: PropTypes.number,
     image : PropTypes.string.isRequired,
     judul : PropTypes.string.isRequired,
@@ -40,4 +40,4 @@ ListBook.propTypes = {
     kondisi : PropTypes.string
 }
 
-export default ListBook
+export default ListBooks
