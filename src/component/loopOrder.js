@@ -20,12 +20,13 @@ const LoopPenjualan = props => {
                 </div>
                 <div className="row">
                     <div className="col-md-4"><label>nomor resi</label></div>
-                    <div className="col-md-8"><label>{props.nomor_resi}</label></div>
+                    <div className="col-md-5"><label>{props.nomor_resi}</label></div>
                 </div>
                 <div className="row">
                     <div className="col-md-4"><label>pembeli</label></div>
                     <div className="col-md-8"><label>{props.pembeli.username}</label></div>
                 </div>
+                <Link to={"/order-detail/" + props.id}><button>Detail</button></Link>
             </div>
         </div>
     )

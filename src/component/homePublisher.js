@@ -55,17 +55,17 @@ class HomePublisher extends Component{
                                     </Link>
                                 </div>
                                 <div className="col-6 publisher-small">
-                                    <Link to="/publisher/erlangga">
+                                    <Link to="/penerbit/erlangga">
                                         <img src={Erlangga}/>
                                     </Link>
                                 </div>
                                 <div className="col-6 publisher-small">
-                                    <Link to="/penerbit/jejak-publisher">
+                                    <Link to="/penerbit/jejak publisher">
                                         <img src={JejakPublisher}/>
                                     </Link>
                                 </div>
                                 <div className="col-6 publisher-small">
-                                    <Link to="/penerbit/stiletto-book">
+                                    <Link to="/penerbit/stiletto book">
                                         <img src={StilettoBook}/>
                                     </Link>
                                 </div>
@@ -74,17 +74,17 @@ class HomePublisher extends Component{
                         <div className="col-md-3">
                             <div className="row">
                                 <div className="col-6 publisher-small">
-                                    <Link to="/penerbit/one-peach-media">
+                                    <Link to="/penerbit/one peach media">
                                         <img src={OnePeachMedia}/>
                                     </Link>
                                 </div>
                                 <div className="col-6 publisher-small">
-                                    <Link to="/penerbit/edwrite-publishing">
+                                    <Link to="/penerbit/edwrite publishing">
                                         <img src={EdwritePublishing}/>
                                     </Link>
                                 </div>
                                 <div className="col-6 publisher-small">
-                                    <Link to="/penerbit/ae-publishing">
+                                    <Link to="/penerbit/ae publishing">
                                         <img src={AePublishing}/>
                                     </Link>
                                 </div>
@@ -96,7 +96,7 @@ class HomePublisher extends Component{
                             </div>
                         </div>
                         <div className="col-md-3 publisher-big">
-                        <Link to="penerbit/bentang-pustaka">
+                        <Link to="penerbit/bentang pustaka">
                             <img src={BentangPustaka}/>
                         </Link>
                     </div>

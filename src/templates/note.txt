@@ -8,12 +8,14 @@ both:
 -kategori
 
 undone:
-cart
-info-buku
+admin_cart_detail
+admin_toko_detail
 
 cek lagi:
 start shop
 home
 cart
+metode_pembayaran
+metode_pengiriman
 
 api blm:

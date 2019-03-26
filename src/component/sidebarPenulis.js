@@ -12,10 +12,10 @@ const SidebarPenulis = props => {
                 <span>Tag Terkait:</span>
                 <br/>
                 <form action="#">
-                    <input type="checkbox" name="tag" value="metropop"/>Metropop<br/>
-                    <input type="checkbox" name="tag" value="fan-fiction"/>Fan Fiction<br/>
-                    <input type="checkbox" name="tag" value="romance"/>Romance<br/>
-                    <input type="checkbox" name="tag" value="metropop"/>Religi<br/>
+                    <input type="checkbox" name="kategori" value="metropop"/>Metropop<br/>
+                    <input type="checkbox" name="kategori" value="fan-fiction"/>Fan Fiction<br/>
+                    <input type="checkbox" name="kategori" value="romance"/>Romance<br/>
+                    <input type="checkbox" name="kategori" value="metropop"/>Religi<br/>
                     <button type="submit">Apply</button>
                 </form>
                 <hr/>

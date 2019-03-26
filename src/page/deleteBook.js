@@ -42,7 +42,7 @@ class DeleteBook extends Component {
         })
         .then(function(response){
             console.log(response.data);
-            self.props.history.push('/')
+            self.props.history.push('/cart')
         })
         .catch(function(error){
             console.log(error);

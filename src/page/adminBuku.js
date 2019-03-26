@@ -7,12 +7,13 @@ import "./../css/bootstrap.min.css";
 import "./../css/main.css";
 
 import SidebarKategori from '../component/sidebarKategori'
-import ListBook from '../component/kontenKategori'
+import ListBook from '../component/adminBukuLoop'
+import SidebarAdmin from "../component/sidebarAdmin";
 
 const base_url = 'http://0.0.0.0:5000/buku?kategori=';
 
 
-class Kategories extends Component {
+class AdminBuku extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -24,13 +25,15 @@ class Kategories extends Component {
 
         componentDidMount = () =>{
             const self = this;
-            const category = this.props.location.pathname.slice(10)
+            const tokens = localStorage.getItem('token')
             console.log(this.state.selectedPage)
             axios
-            .get('http://0.0.0.0:5000/buku', {
+            .get('http://0.0.0.0:5000/admin/buku', {
                 params:{
-                    'kategori': category,
                     'p' : this.state.selectedPage
+                },
+                headers:{
+                    'Authorization' : 'Bearer ' + tokens
                 }
             })
             .then(function(response){
@@ -44,13 +47,15 @@ class Kategories extends Component {
         
         componentWillUpdate = () =>{
             const self = this;
-            const category = this.props.location.pathname.slice(10)
+            const tokens = localStorage.getItem('token')
             console.log(this.state.selectedPage)
             axios
-            .get('http://0.0.0.0:5000/buku', {
+            .get('http://0.0.0.0:5000/admin/buku', {
                 params:{
-                    'kategori': category,
                     'p' : this.state.selectedPage
+                },
+                headers:{
+                    'Authorization' : 'Bearer ' + tokens
                 }
             })
             .then(function(response){
@@ -72,30 +77,24 @@ class Kategories extends Component {
 
         return (
         <div>
-            <section className="isi-tab-kategori">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-2 col-sm-4">
-                            <SidebarKategori title={this.props.location.pathname.slice(10)}/>
+            <section class="isi-tab-admin">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4" style={{margin:'0'}}>
+                            <SidebarAdmin tab = {this.props.location.pathname.slice(7)}/>
                         </div>
-                        <div className="col-md-10 col-sm-8">
-                            <div className="konten-kategori">
-                                <div className="row">
-                                {Books.map((item, key) => {
-                                    return <ListBook key ={key} id={item.id_buku} judul={item.judul_buku} image={item.gambar} toko={item.shop} harga={item.harga} kondisi={item.kondisi}/>;
-                                })}
-                                </div>
-                            </div>
-                            <div className="pages">
-                                <div className="page">
-                                    <span>Page</span>
-                                    <PaginationComponent
-                                    totalItems={Books.length}
-                                    pageSize={10}
-                                    onSelect={this.handleSelected}
-                                    maxPaginationNumbers={5}
-                                    />
-                                </div>
+                        <div class="col-md-10 col-sm-8">
+                        {Books.map((item, key) => {
+                            return <ListBook key ={key} id={item.id_buku} toko={item.toko} judul={item.judul_buku} harga={item.harga} kategori={item.kategori} kode_promo={item.kode_promo} status={item.status}/>;
+                        })}
+                            <div class="page">
+                                <span>Page</span>
+                                <PaginationComponent
+                                totalItems={Books.length}
+                                pageSize={10}
+                                onSelect={this.handleSelected}
+                                maxPaginationNumbers={5}
+                                />
                             </div>
                         </div>
                     </div>
@@ -106,4 +105,4 @@ class Kategories extends Component {
     }
 }
 
-export default Kategories;
+export default AdminBuku;

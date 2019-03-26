@@ -8,20 +8,20 @@ import "./../css/main.css";
 const ListBook = props => {
     return(
         <div className="col-lg-3 col-md-4 col-sm-6">
-            <Link to={"/info-buku/"+props.id}>
+            <Link to={"/detail-buku/"+props.id}>
             <div className="buku-small">
-                <img src={props.image}/>
+                <img src={props.buku.gambar}/>
                 <br/>
-                <span className="judul">{props.judul}</span>
+                <span className="judul">{props.buku.judul}</span>
                 <br/>
-                <span className="toko">{props.toko}</span>
+                <span className="toko">{props.toko.nama_toko}</span>
                 <br/>
                 <div className="row">
                     <div className="col-md-6">
-                        <span className="kondisi">{props.kondisi}</span>
+                        <span className="kondisi">{props.buku.kondisi}</span>
                     </div>
                     <div className="col-md-6">
-                        <span className="harga">Rp {props.harga},00</span>
+                        <span className="harga">Rp {props.buku.harga},00</span>
                     </div>
                 </div>
             </div>
@@ -32,11 +32,8 @@ const ListBook = props => {
 
 ListBook.propTypes = {
     id: PropTypes.number,
-    image : PropTypes.string.isRequired,
-    judul : PropTypes.string.isRequired,
-    toko : PropTypes.number,
-    harga : PropTypes.number,
-    kondisi : PropTypes.string
+    buku : PropTypes.string.isRequired,
+    toko : PropTypes.string
 }
 
 export default ListBook

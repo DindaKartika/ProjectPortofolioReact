@@ -15,37 +15,37 @@ import JNT from './../image/logo/j&t.png'
 import Pos from './../image/logo/pos.png'
 import Wahana from './../image/logo/wahana.png'
 
-class Profile extends Component {
+class InfoToko extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Info: {},
+            Toko: {},
             Details: {},
-            ubahEmail : false,
+            ubahNama : false,
             ubahInfo : false,
             };
-        this.UbahEmail = this.UbahEmail.bind(this)
+        this.UbahNama = this.UbahNama.bind(this)
         this.UbahInfo = this.UbahInfo.bind(this)
-        this.EditEmail = this.EditEmail.bind(this)
+        this.EditNama = this.EditNama.bind(this)
         this.EditInfo = this.EditInfo.bind(this)
+        this.Active = this.Active.bind(this)
+        this.Inactive = this.Inactive.bind(this)
         }
 
     componentDidMount = () =>{
         const self = this;
         const tokens = localStorage.getItem('token')
-        console.log(this.state.selectedPage)
         axios
-        .get('http://0.0.0.0:5000/member/me', {
+        .get('http://0.0.0.0:5000/toko/me', {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
         })
         .then(function(response){
-            self.setState({Info: response.data});
+            self.setState({Toko: response.data});
             self.setState({Details: response.data.detail});
-            self.setState({email: response.data.email});
-            self.setState({nama: response.data.detail.nama});
-            self.setState({telepon: response.data.detail.telepon});
+            self.setState({nama: response.data.nama_toko});
+            self.setState({status: response.data.status});
             self.setState({alamat_lengkap: response.data.detail.alamat_lengkap});
             self.setState({kota: response.data.detail.kota});
             self.setState({kecamatan: response.data.detail.kecamatan});
@@ -61,9 +61,9 @@ class Profile extends Component {
         this.setState({[e.target.name]: e.target.value});
     };
 
-    UbahEmail() {
+    UbahNama() {
         this.setState(prevState => ({
-            ubahEmail: !prevState.ubahEmail
+            ubahNama: !prevState.ubahNama
             }));
         }
 
@@ -73,18 +73,16 @@ class Profile extends Component {
             }));
         }
     
-    EditEmail(){
+    EditNama(){
         const self = this;
-        const id_member = this.state.Info.id_member
-        console.log(id_member)
-        const {email} = this.state;
+        const {nama_toko} = this.state;
         const data={
-            email: email
+            nama_toko: nama_toko
         };
         console.log(data)
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/member/me', data, {
+        .put('http://0.0.0.0:5000/toko/me', data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -101,11 +99,8 @@ class Profile extends Component {
 
     EditInfo(){
         const self = this;
-        const id_member = this.state.Info.id_member
-        const {alamat_lengkap, kota, kecamatan, kode_pos, telepon, nama} = this.state;
+        const {alamat_lengkap, kota, kecamatan, kode_pos} = this.state;
         const data={
-            nama: nama,
-            telepon: telepon,
             alamat_lengkap: alamat_lengkap,
             kota: kota,
             kecamatan: kecamatan,
@@ -114,14 +109,62 @@ class Profile extends Component {
         console.log(data)
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/detail_member/me/' + id_member, data, {
+        .put('http://0.0.0.0:5000/detail_toko', data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
         })
         .then(response => {
             console.log(response.data)
-            self.setState({ubahInfo: false})
+            self.setState({ubahToko: false})
+            window.location.reload()
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
+    Active(){
+        const self = this;
+        const data={
+            status: 'active'
+        };
+
+        console.log(data)
+
+        const tokens = localStorage.getItem('token')
+        axios
+        .put('http://0.0.0.0:5000/toko/me', data, {
+            headers:{
+                'Authorization' : 'Bearer ' + tokens
+            }
+        })
+        .then(response => {
+            console.log(response.data)
+            window.location.reload()
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
+    Inactive(){
+        const self = this;
+        const data={
+            status: 'inactive'
+        };
+
+        console.log(data)
+
+        const tokens = localStorage.getItem('token')
+        axios
+        .put('http://0.0.0.0:5000/toko/me', data, {
+            headers:{
+                'Authorization' : 'Bearer ' + tokens
+            }
+        })
+        .then(response => {
+            console.log(response.data)
             window.location.reload()
         })
         .catch(error => {
@@ -130,75 +173,52 @@ class Profile extends Component {
     }
 
     render() {
-        const {Info, Details, ubahEmail, ubahInfo} = this.state;
+        const {Toko, Details, ubahNama, ubahInfo} = this.state;
         return (
         <div>
             <section className="isi-detail-buku">
                 <div className="detail-box">
-                    <h1>Detail Member</h1>
+                    <h1>Detail Toko</h1>
                     <hr/>
                     <div className="row">
                         <div className="col-md-2">
-                            <label>Nama Depan</label>
-                        </div>
-                        <div className="col-md-10">
-                            <span>{Info.nama_depan}</span>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-2">
-                            <label>Nama Belakang</label>
-                        </div>
-                        <div className="col-md-10">
-                            <span>{Info.nama_belakang}</span>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-2">
-                            <label>Username</label>
-                        </div>
-                        <div className="col-md-10">
-                            <span>{Info.username}</span>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-2">
-                            <label>email</label>
+                            <label>Nama Toko</label>
                         </div>
                         <div className="col-md-5">
-                            <span style={{display: (ubahEmail) ? 'none' : 'block' }}>{Info.email}</span>
-                            <input style={{display: !(ubahEmail) ? 'none' : 'block' }} type="text" name="email" onChange={e => this.changeInput(e)} defaultValue={Info.email}/>
+                            <span style={{display: (ubahNama) ? 'none' : 'block' }}>{Toko.nama_toko}</span>
+                            <input style={{display: !(ubahNama) ? 'none' : 'block' }} type="text" name="nama_toko" onChange={e => this.changeInput(e)} defaultValue={Toko.nama_toko}/>
                         </div>
                         <div className="col-md-5">
-                            <button style={{display: (ubahEmail) ? 'none' : 'block' }} onClick={this.UbahEmail}>Ubah Email</button>
-                            <button style={{display: !(ubahEmail) ? 'none' : 'block' }} onClick={this.EditEmail}>Simpan</button>
+                            <button style={{display: (ubahNama) ? 'none' : 'block' }} onClick={this.UbahNama}>Ubah Nama Toko</button>
+                            <button style={{display: !(ubahNama) ? 'none' : 'block' }} onClick={this.EditNama}>Simpan</button>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-2">
-                            <label>password</label>
+                            <label>Rating</label>
                         </div>
                         <div className="col-md-10">
-                            <span>***************</span>
-                        </div>
-                    </div>
-                    <hr/>
-                    <div className="row">
-                        <div className="col-md-2">
-                            <label>Nama</label>
-                        </div>
-                        <div className="col-md-10">
-                            <span style={{display: (ubahInfo) ? 'none' : 'block' }}>{Details.nama}</span>
-                            <input style={{display: !(ubahInfo) ? 'none' : 'block' }} type="text" name="alamat_lengkap" onChange={e => this.changeInput(e)} defaultValue={Details.nama}/>
+                            <span>{Toko.rating}</span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-2">
-                            <label>Telepon</label>
+                            <label>Metode Pengiriman</label>
                         </div>
                         <div className="col-md-10">
-                            <span style={{display: (ubahInfo) ? 'none' : 'block' }}>{Details.telepon}</span>
-                            <input style={{display: !(ubahInfo) ? 'none' : 'block' }} type="text" name="telepon" onChange={e => this.changeInput(e)} defaultValue={Details.telepon}/>
+                            <span>{Toko.id_metode_pengiriman}</span>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-2">
+                            <label>Status</label>
+                        </div>
+                        <div className="col-md-5">
+                            <span>{Toko.status}</span>
+                        </div>
+                        <div className="col-md-5">
+                            <button onClick={this.Active} style={{display: (Toko.status == 'active') ? 'none' : 'block' }}>Ubah Status 1</button>
+                            <button onClick={this.Inactive} style={{display: (Toko.status == 'inactive') ? 'none' : 'block' }}>Ubah Status 2</button>
                         </div>
                     </div>
                     <div className="row">
@@ -239,7 +259,7 @@ class Profile extends Component {
                     </div>
                     <div className="row">
                         <div className="col-12">
-                            <button style={{display: (ubahInfo) ? 'none' : 'block' }} onClick={this.UbahInfo}>Ubah Info</button>
+                            <button style={{display: (ubahInfo) ? 'none' : 'block' }} onClick={this.UbahInfo}>Edit Info</button>
                             <button style={{display: !(ubahInfo) ? 'none' : 'block' }} onClick={this.EditInfo}>Simpan</button>
                         </div>
                     </div>
@@ -248,7 +268,7 @@ class Profile extends Component {
                             <label>Status</label>
                         </div>
                         <div className="col-md-10">
-                            <span>{Info.status}</span>   
+                            <span>{Toko.status}</span>   
                         </div>
                     </div>
                 </div>
@@ -258,4 +278,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+export default InfoToko;

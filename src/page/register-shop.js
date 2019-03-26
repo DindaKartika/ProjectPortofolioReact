@@ -15,7 +15,7 @@ class RegisterShop extends Component {
             return(
                 <div className="register-box">
                 <h2>Anda telah mendaftar toko</h2>
-                <Link to="/buku-saya"><button>Lanjutkan ke halaman toko</button></Link>
+                <Link to="/produk-saya"><button>Lanjutkan ke halaman toko</button></Link>
             </div>
             )
         }

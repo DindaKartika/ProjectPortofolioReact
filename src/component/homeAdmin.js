@@ -18,9 +18,6 @@ class HomeAdmin extends Component{
                     <Link to="/admin/member">
                         <div className="content-index-admin">
                             <h2>Member</h2>
-                            <span>100 Member</span>
-                            <br/>
-                            <span>25 Penjual</span>
                         </div>
                     </Link>
                 </div>
@@ -28,9 +25,6 @@ class HomeAdmin extends Component{
                     <Link to="/admin/toko">
                         <div className="content-index-admin">
                             <h2>Toko</h2>
-                            <span>25 Toko Active</span>
-                            <br/>
-                            <span>0 Toko Inactive</span>
                         </div>
                     </Link>
                 </div>
@@ -38,27 +32,20 @@ class HomeAdmin extends Component{
                     <Link to="/admin/buku">
                         <div className="content-index-admin">
                             <h2>Buku</h2>
-                            <span>75 Buku</span>
                         </div>
                     </Link>
                 </div>
                 <div className="container">
-                    <Link to="/admin/metode-pembayaran">
+                    <Link to="/admin/pembayaran">
                         <div className="content-index-admin">
                             <h2>Metode Pembayaran</h2>
-                            <span>10 Metode Pembayaran Active</span>
-                            <br/>
-                            <span>1 Metode Pembayaran Disabled</span>
                         </div>
                     </Link>
                 </div>
                 <div className="container">
-                    <Link to="/admin/metode-pengiriman">
+                    <Link to="/admin/pengiriman">
                         <div className="content-index-admin">
                             <h2>Metode Pengiriman</h2>
-                            <span>6 Metode Pengiriman Active</span>
-                            <br/>
-                            <span>0 Metode Pengiriman Disabled</span>
                         </div>
                     </Link>
                 </div>
@@ -66,11 +53,6 @@ class HomeAdmin extends Component{
                     <Link to="/admin/cart">
                         <div className="content-index-admin">
                             <h2>Cart</h2>
-                            <span>30 Cart Unfinished</span>
-                            <br/>
-                            <span>10 Cart Staged</span>
-                            <br/>
-                            <span>25 Cart Finished</span>
                         </div>
                     </Link>
                 </div>
@@ -78,11 +60,6 @@ class HomeAdmin extends Component{
                     <Link to="/admin/transaksi">
                         <div className="content-index-admin">
                             <h2>Transaksi</h2>
-                            <span>6 Metode Staged</span>
-                            <br/>
-                            <span>4 Metode Processed</span>
-                            <br/>
-                            <span>25 Metode Finished</span>
                         </div>
                     </Link>
                 </div>

@@ -66,51 +66,65 @@ class Cart extends Component {
         const {Pembelian} = this.state;
         console.log('pembelian', Pembelian)
         console.log(Cart)
-        return (
-        <div>
-            <section className="isi-details">
-                <h2>Cart</h2>
-                <div className="row">
-                    <div className="col-md-8">
-                        <div className="details-box">
-                            <ViewDetailMember />
-                        </div>
-                        <div className="details-box">
-                            <h4>Pembelian</h4>
-                            {Pembelian.map((item, key) => {
-                                return <ListBuy key ={key} id={item.id_pembelian} judul={item.id_buku} toko={item.id_toko} harga={item.total_harga} jumlah={item.jumlah} metode_pengiriman={item.id_metode_pengiriman}/>;
-                            })}
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="details-box">
-                            <h4>Pembayaran</h4>
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <label>Total barang</label>
-                                </div>
-                                <div className="col-md-6">
-                                    <label>{Cart.total_barang}</label>
-                                </div>
-                                <div className="col-md-6">
-                                    <label>Total pembayaran</label>
-                                </div>
-                                <div className="col-md-6">
-                                    <label>Rp {Cart.total_pembayaran},00</label>
-                                </div>
-                            </div>
-                            <p>* harga belum termasuk biaya pengiriman</p>
-                            <br/>
-                            <h4>Pembayaran : </h4>
-                            <label>Transfer Bank XYZ</label>
-                            <label>Rekening : 093210484324</label>
-                            <button onClick={this.Bayar}>Bayar</button>
-                        </div>
+        const is_login = JSON.parse(localStorage.getItem('is_login'))
+        if(is_login === null){
+            return (
+                <div className="isi-details">
+                    <div className="details-box">
+                        <span>Anda belum login. Silahkan login dulu</span>
+                        <Link to="/"><button>Beranda</button></Link>
                     </div>
                 </div>
-            </section>
-        </div>
-        );
+            );
+        }
+        else{
+            return(
+                <div>
+                <section className="isi-details">
+                    <h2>Cart</h2>
+                    <div className="row">
+                        <div className="col-md-8">
+                            <div className="cart-box">
+                                <ViewDetailMember />
+                            </div>
+                            <div className="cart-box">
+                                <h4>Pembelian</h4>
+                                {Pembelian.map((item, key) => {
+                                    return <ListBuy key ={key} id={item.id_pembelian} judul={item.id_buku} toko={item.id_toko} harga={item.total_harga} jumlah={item.jumlah} metode_pengiriman={item.id_metode_pengiriman}/>;
+                                })}
+                            </div>
+                        </div>
+                        <div className="col-md-4">
+                            <div className="cart-box">
+                                <h4>Pembayaran</h4>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label>Total barang</label>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label>{Cart.total_barang}</label>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label>Total pembayaran</label>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label>Rp {Cart.total_pembayaran},00</label>
+                                    </div>
+                                </div>
+                                <p>* harga belum termasuk biaya pengiriman</p>
+                                <br/>
+                                <h4>Pembayaran : </h4>
+                                <label>Transfer Bank XYZ</label>
+                                <label>Rekening : 093210484324</label>
+                                <button onClick={this.Bayar}>Bayar</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            )
+        }
+
     }
 }
 

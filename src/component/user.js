@@ -12,7 +12,8 @@ class User extends Component {
         super(props);
         this.state = {
             name: "",
-            status: ""
+            status: "",
+            id:""
         }
         this.componentDidMount = this.componentDidMount.bind(this);
     }
@@ -27,6 +28,7 @@ class User extends Component {
         })
         .then(response => {
             this.setState({name: response.data.username});
+            this.setState({id: response.data.id_member})
             localStorage.setItem('status', response.data.status);
             this.setState({status: response.data.status});
         })
@@ -36,10 +38,10 @@ class User extends Component {
     }
 
     render() {
-        const {name} = this.state;
+        const {name, id} = this.state;
             return (
                 <div>
-                    <label>Halo, {name}</label>
+                    <Link to="/profile/" className="user"><label>Halo, {name}</label></Link>
                 </div>
             );
     }

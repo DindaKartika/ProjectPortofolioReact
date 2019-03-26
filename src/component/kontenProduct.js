@@ -15,8 +15,6 @@ const ListBooks = props => {
                 <br/>
                 <span className="judul">{props.judul}</span>
                 <br/>
-                <span className="toko">{props.toko}</span>
-                <br/>
                 <div className="row">
                     <div className="col-md-6">
                         <span className="kondisi">{props.kondisi}</span>

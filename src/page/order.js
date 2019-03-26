@@ -66,8 +66,8 @@ class Order extends Component {
                         <div className="page">
                             <span>Page</span>
                             <PaginationComponent
-                            totalItems={50}
-                            pageSize={3}
+                            totalItems={Penjualan.length}
+                            pageSize={10}
                             onSelect={this.handleSelected}
                             maxPaginationNumbers={5}
                             />

@@ -25,7 +25,7 @@ class Penulis extends Component {
             const writer = this.props.location.pathname.slice(9)
             console.log(writer)
             axios
-            .get('http://0.0.0.0:5000/buku', {
+            .get('http://0.0.0.0:5000/toko/buku/detail_buku', {
                 params:{
                     'penulis': writer,
                     'p' : selectedPage
@@ -60,7 +60,8 @@ class Penulis extends Component {
                             <div className="konten-kategori">
                                 <div className="row">
                                 {Books.map((item, key) => {
-                                    return <ListBook key ={key} id={item.id_buku} judul={item.judul_buku} image={item.gambar} toko={item.id_toko} harga={item.harga} kondisi={item.kondisi}/>;
+                                    console.log(item)
+                                    return <ListBook key ={key} id={item.id_buku} buku={item.book}toko={item.shop}/>;
                                 })}
                                 </div>
                             </div>
@@ -68,8 +69,8 @@ class Penulis extends Component {
                                 <div className="page">
                                     <span>Page</span>
                                     <PaginationComponent
-                                    totalItems={50}
-                                    pageSize={3}
+                                    totalItems={Books.length}
+                                    pageSize={10}
                                     onSelect={this.handleSelected}
                                     maxPaginationNumbers={5}
                                     />

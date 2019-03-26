@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import queryString from 'query-string';
 
 import PaginationComponent from "react-reactstrap-pagination";
 
@@ -8,7 +9,7 @@ import "./../css/bootstrap.min.css";
 import "./../css/main.css";
 
 import FilterSearch from "./../component/FilterSearch.js"
-import ListBook from '../component/kontenKategori'
+import ListBook from '../component/kontenSearch'
 
 class Search extends Component {
     constructor(props) {
@@ -26,10 +27,14 @@ class Search extends Component {
         componentDidMount = (selectedPage) =>{
             const self = this;
             const category = this.props.location.pathname.slice(9)
+
+            let url = this.props.location.search;
+            let params = queryString.parse(url);
+            console.log(params);
             axios
             .get('http://0.0.0.0:5000/buku', {
                 params:{
-                    'judul_buku': category,
+                    'judul_buku': params.search,
                     'p' : selectedPage
                 }
             })
@@ -90,7 +95,7 @@ class Search extends Component {
                     <div class="konten-kategori">
                         <div class="row">
                         {Books.map((item, key) => {
-                            return <ListBook key ={key} judul={item.judul_buku} image={item.gambar} toko={item.id_toko} harga={item.harga} kondisi={item.kondisi}/>;
+                            return <ListBook key ={key} id={item.id_buku} judul={item.judul_buku} image={item.gambar} toko={item.shop} harga={item.harga} kondisi={item.kondisi}/>;
                         })}
                         </div>
                     </div>
@@ -98,8 +103,8 @@ class Search extends Component {
                         <div className="page">
                             <span>Page</span>
                             <PaginationComponent
-                            totalItems={50}
-                            pageSize={3}
+                            totalItems={Books.length}
+                            pageSize={10}
                             onSelect={this.handleSelected}
                             maxPaginationNumbers={5}
                             />

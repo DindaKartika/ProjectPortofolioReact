@@ -835,6 +835,16 @@ sans-serif;
         text-decoration: none;
     }
 
+    .buttonAdd{
+        width: 50%;
+        font-family: $primary-font-family;
+        font-weight: bold;
+        background-color: $dark-blue;
+        color: $color-white;
+        border-radius: 25px;
+        margin: 0 25%;
+    }
+
     .konten-admin {
         padding: 20px 2%;
         font-family: $primary-font-family;

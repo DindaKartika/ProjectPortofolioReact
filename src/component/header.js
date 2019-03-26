@@ -57,10 +57,12 @@ class Header extends Component{
                   if (response.data.hasOwnProperty("token")){
                     localStorage.setItem('token', response.data.token);
                     localStorage.setItem('is_login', true);
+                    this.setState({'token': response.data.token})
                     this.setState({is_login: true})
                     console.log(response.data)
                     this.setState({modal:false})
                     this.props.history.push("/");
+                    console.log(localStorage.getItem('token'))
                   }
               })
               .catch(error => {
@@ -152,79 +154,81 @@ class Header extends Component{
                                 </div>
                             </div>
                         </div>
-                        <div className="col-12">
-                        {this.state.explores && <HeaderHidden />}
+                        <div className="row">
+                            <div className="col-12">
+                            {this.state.explores && <HeaderHidden />}
+                            </div>
+                        </div>
+                        <Modal isOpen={this.state.modal}>
+                            <ModalHeader toggle={this.toggle}>
+                                Log In
+                            </ModalHeader>
+                            <ModalBody>
+                                    <label for="username">Username</label>
+                                    <br/>
+                                    <input type="text" name="username" placeholder="Username" onChange={e => this.changeInput(e)} required/>
+                                    <br/>
+                                    <label for="password">Password</label>
+                                    <br/>
+                                    <input type="password" name="password" placeholder="Password" onChange={e => this.changeInput(e)} required/>
+                                    <br/>
+                                    <span onClick={() =>this.forgetPass()} className="forgetPass">Lupa Password?</span>
+                                    <br/>
+                                    <button onClick={this.afterLogin} className="buttonModal">Masuk</button>
+                                <span>Belum Punya Akun?</span>
+                                <button className="buttonModal signUp" onClick={this.signUp}>Daftar</button>
+                            </ModalBody>
+                            <ModalFooter>
+                            </ModalFooter>
+                        </Modal>
                     </div>
-                    <Modal isOpen={this.state.modal}>
-                        <ModalHeader toggle={this.toggle}>
-                            Log In
-                        </ModalHeader>
-                        <ModalBody>
-                                <label for="username">Username</label>
-                                <br/>
-                                <input type="text" name="username" placeholder="Username" onChange={e => this.changeInput(e)} required/>
-                                <br/>
-                                <label for="password">Password</label>
-                                <br/>
-                                <input type="password" name="password" placeholder="Password" onChange={e => this.changeInput(e)} required/>
-                                <br/>
-                                <span onClick={() =>this.forgetPass()} className="forgetPass">Lupa Password?</span>
-                                <br/>
-                                <button onClick={this.afterLogin} className="buttonModal">Masuk</button>
-                            <span>Belum Punya Akun?</span>
-                            <button className="buttonModal signUp" onClick={this.signUp}>Daftar</button>
-                        </ModalBody>
-                        <ModalFooter>
-                        </ModalFooter>
-                    </Modal>
-                </div>
-            )
-        }
-        else{
-            return(
-                <div className="header">
-                    <div className="container-fluid">
-                        <div className="header-atas d-md-block d-none">
-                            <div className="row">
-                                <div className="col-lg-2 col-md-4"><User/></div>
-                                <div className="col-lg-4 d-lg-block d-none"></div>
-                                <div className="col-lg-6 col-md-8">
-                                    <ul className="nav">
-                                        <li className="nav-item nav-atas"><Link to="/promosi" className="nav-link">Promo</Link></li>
-                                        <li className="nav-item nav-atas"><Link to="/start-shop" className="nav-link">Mulai Berjualan</Link></li>
-                                        <li className="nav-item nav-atas"><Link to="/help" className="nav-link">Pusat Bantuan</Link></li>
-                                    </ul>
+                )
+            }
+            else{
+                return(
+                    <div className="header">
+                        <div className="container-fluid">
+                            <div className="header-atas d-md-block d-none">
+                                <div className="row">
+                                    <div className="col-lg-2 col-md-4"><User/></div>
+                                    <div className="col-lg-4 d-lg-block d-none"></div>
+                                    <div className="col-lg-6 col-md-8">
+                                        <ul className="nav">
+                                            <li className="nav-item nav-atas"><Link to="/promosi" className="nav-link">Promo</Link></li>
+                                            <li className="nav-item nav-atas"><Link to="/start-shop" className="nav-link">Mulai Berjualan</Link></li>
+                                            <li className="nav-item nav-atas"><Link to="/help" className="nav-link">Pusat Bantuan</Link></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="header-bawah">
+                                <div className="row">
+                                    <div className="col-lg-2 col-md-6">
+                                        <h1><Link to="/">BukuKu</Link></h1>
+                                    </div>
+                                    <div className="col-lg-3 col-md-6">
+                                        <form action="/search">
+                                            <input style={{display: (localStorage.getItem('status') == 'admin') ? 'none' : 'block' }} type="text" name="search" placeholder="search"/>
+                                        </form>
+                                    </div>
+                                    <div className="col-lg-3"></div>
+                                    <div className="col-lg-4">
+                                        <ul className="nav">
+                                            <li className="nav-item nav-bawah"><button onClick={this.openExplore} style={{display: (localStorage.getItem('status') == 'admin') ? 'none' : 'block' }}>Explore</button></li>
+                                            <li className="nav-item nav-bawah"><Link to="/cart" className="nav-link" style={{display: (localStorage.getItem('status') == 'admin') ? 'none' : 'block' }}>Cart</Link></li>
+                                            <li className="nav-item nav-bawah"><Link to="/" className="nav-link" onClick={() =>this.props.postSignOut()} >Log Out</Link></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        {this.state.explores && <HeaderHidden />}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="header-bawah">
-                            <div className="row">
-                                <div className="col-lg-2 col-md-6">
-                                    <h1><Link to="/">BukuKu</Link></h1>
-                                </div>
-                                <div className="col-lg-3 col-md-6">
-                                    <form action="/search">
-                                        <input type="text" name="search" placeholder="search"/>
-                                    </form>
-                                </div>
-                                <div className="col-lg-3"></div>
-                                <div className="col-lg-4">
-                                    <ul className="nav">
-                                        <li className="nav-item nav-bawah"><button onClick={this.openExplore} style={{display: (localStorage.getItem('status') == 'admin') ? 'none' : 'block' }}>Explore</button></li>
-                                        <li className="nav-item nav-bawah"><Link to="/cart" className="nav-link" style={{display: (localStorage.getItem('status') == 'admin') ? 'none' : 'block' }}>Cart</Link></li>
-                                        <li className="nav-item nav-bawah"><Link to="/" className="nav-link" onClick={() =>this.props.postSignOut()} >Log Out</Link></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                {this.state.explores && <HeaderHidden />}
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-            )
+                    </div>
+                )
+            }
         }
     }
-}
 
 export default connect("token, is_login", actions)(withRouter(Header))

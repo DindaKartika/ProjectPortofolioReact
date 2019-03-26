@@ -6,18 +6,17 @@ import PaginationComponent from "react-reactstrap-pagination";
 import "./../css/bootstrap.min.css";
 import "./../css/main.css";
 
-import SidebarKategori from '../component/sidebarKategori'
-import ListBooks from '../component/kontenProduct'
-import SidebarProduct from "../component/sidebarProduct";
+import SidebarAdmin from "../component/sidebarAdmin";
+import ListPengiriman from '../component/adminPengirimanLoop'
 
 const base_url = 'http://0.0.0.0:5000/buku?kategori=';
 
 
-class Product extends Component {
+class MetodePengiriman extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Books: [],
+            Pengirimans: [],
             selectedPage: '1'
             };
             this.handleSelected = this.handleSelected.bind(this);
@@ -28,7 +27,7 @@ class Product extends Component {
             const tokens = localStorage.getItem('token')
             console.log(this.state.selectedPage)
             axios
-            .get('http://0.0.0.0:5000/toko/buku', {
+            .get('http://0.0.0.0:5000/admin/metode_pengiriman', {
                 params:{
                     'p' : this.state.selectedPage
                 },
@@ -37,7 +36,7 @@ class Product extends Component {
                 }
             })
             .then(function(response){
-                self.setState({Books: response.data});
+                self.setState({Pengirimans: response.data});
                 console.log(response.data);
             })
             .catch(function(error){
@@ -47,11 +46,10 @@ class Product extends Component {
         
         componentWillUpdate = () =>{
             const self = this;
-            const category = this.props.location.pathname.slice(10)
-            console.log(this.state.selectedPage)
             const tokens = localStorage.getItem('token')
+            console.log(this.state.selectedPage)
             axios
-            .get('http://3.1.132.156:5000/toko/buku', {
+            .get('http://0.0.0.0:5000/admin/metode_pengiriman', {
                 params:{
                     'p' : this.state.selectedPage
                 },
@@ -60,7 +58,7 @@ class Product extends Component {
                 }
             })
             .then(function(response){
-                self.setState({Books: response.data});
+                self.setState({Pengirimans: response.data});
                 console.log(response.data);
             })
             .catch(function(error){
@@ -74,36 +72,30 @@ class Product extends Component {
           }
 
     render() {
-        const {Books} = this.state;
+        const {Pengirimans} = this.state;
 
         return (
         <div>
-            <section className="isi-tab-kategori">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-2 col-sm-4">
-                            <SidebarProduct/>
+            <section class="isi-tab-admin">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-4" style={{margin:'0'}}>
+                            <SidebarAdmin tab = {this.props.location.pathname.slice(7)}/>
                         </div>
-                        <div className="col-md-10 col-sm-8">
-                            <div className="konten-kategori">
-                                <div className="row">
-                                {Books.map((item, key) => {
-                                    return <ListBooks key ={key} id={item.id_buku} judul={item.judul_buku} image={item.gambar} toko={item.id_toko} harga={item.harga} kondisi={item.kondisi}/>;
-                                })}
-                                </div>
+                        <div class="col-md-10 col-sm-8">
+                        {Pengirimans.map((item, key) => {
+                            return <ListPengiriman key ={key} id={item.id_metode_pengiriman} metode={item.metode} kurir={item.kurir} status={item.status}/>;
+                        })}
+                            <div class="page">
+                                <span>Page</span>
+                                <PaginationComponent
+                                totalItems={Pengirimans.length}
+                                pageSize={10}
+                                onSelect={this.handleSelected}
+                                maxPaginationNumbers={5}
+                                />
                             </div>
-                            <div className="pages">
-                                <div className="page">
-                                    <span>Page</span>
-                                    <PaginationComponent
-                                    totalItems={Books.length}
-                                    pageSize={10}
-                                    onSelect={this.handleSelected}
-                                    maxPaginationNumbers={5}
-                                    />
-                                </div>
-                            </div>
-                            <Link to="/tambah-buku"><button>Tambah</button></Link>
+                            <Link to="/admin/tambah-pengiriman"><button>Tambah Metode Pengiriman</button></Link>
                         </div>
                     </div>
                 </div>
@@ -113,4 +105,4 @@ class Product extends Component {
     }
 }
 
-export default Product;
+export default MetodePengiriman;

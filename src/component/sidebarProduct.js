@@ -8,16 +8,6 @@ import "./../css/main.css";
 const SidebarProduct = props => {
         return (
             <div className="sidebar">
-                <span>Tag Terkait:</span>
-                <br/>
-                <form action="#">
-                    <input type="checkbox" name="tag" value="metropop"/>Metropop<br/>
-                    <input type="checkbox" name="tag" value="fan-fiction"/>Fan Fiction<br/>
-                    <input type="checkbox" name="tag" value="romance"/>Romance<br/>
-                    <input type="checkbox" name="tag" value="metropop"/>Religi<br/>
-                    <button type="submit">Apply</button>
-                </form>
-                <hr/>
                 <span>Kategori</span>
                 <div className="row">
                     <div className="col-md-6">

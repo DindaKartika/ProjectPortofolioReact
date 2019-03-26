@@ -15,7 +15,7 @@
   font-size: 25px;
 }
 
-.detail-box, .details-box, .info-box, .register-box, .signup-box, .header-hidden, .header-bawah {
+.detail-box, .cart-box, .details-box, .info-box, .register-box, .signup-box, .header-hidden, .header-bawah {
   -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0px 3px 6px 0px rgba(175, 171, 171, 0.16);
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
@@ -35,6 +35,14 @@
   display: block !important;
 }
 
+.alert-warning {
+  width: 100%;
+}
+
+.alert-success {
+  width: 100%;
+}
+
 .container-fluid {
   padding: 0;
 }
@@ -49,6 +57,11 @@ a:hover {
 
 a:focus {
   text-decoration: none !important;
+}
+
+.page-item.active .page-link {
+  background-color: #1206C2 !important;
+  border-color: #AEE4FE !important;
 }
 
 .header-atas {
@@ -67,6 +80,11 @@ a:focus {
   color: #B5B5B8;
   padding: 0;
 }
+.header-atas .user {
+  color: #1206C2;
+  font-weight: bold;
+  cursor: pointer !important;
+}
 
 .header-bawah {
   background-image: linear-gradient(to left, #1206C2, #AEE4FE);
@@ -82,10 +100,7 @@ a:focus {
 .header-bawah a {
   color: #1206C2;
 }
-.header-bawah a:hover {
-  color: #1206C2;
-}
-.header-bawah a:active {
+.header-bawah a:focus, .header-bawah a:hover {
   color: #1206C2;
 }
 .header-bawah button:hover {
@@ -127,12 +142,16 @@ a:focus {
   color: #F7F7F7;
   cursor: pointer;
 }
+.header-bawah .row {
+  margin: 0;
+}
 
 .header-hidden {
   background-color: #F7F7F7;
   padding: 10px 25px 20px 25px;
   color: #1206C2;
   font-family: "Poppins", sans-serif;
+  width: 102.2%;
 }
 .header-hidden h1 {
   padding: 0 10px;
@@ -322,7 +341,6 @@ a:focus {
 .publisher .publisher-big {
   text-align: center;
   vertical-align: middle;
-  border: 1px solid #707070;
   width: 210px;
   height: 210px;
   max-width: 100%;
@@ -334,7 +352,6 @@ a:focus {
 .publisher .publisher-small {
   text-align: center;
   vertical-align: middle;
-  border: 1px solid #707070;
   width: 110px;
   height: 110px;
   max-width: 100%;
@@ -426,6 +443,10 @@ a:focus {
   border-right: 5px solid #B5B5B8;
   height: 100%;
   font-family: "Fira Sans", sans-serif;
+}
+.isi-tab-kategori .sidebar h1 {
+  font-size: 1.15rem;
+  font-weight: bold;
 }
 .isi-tab-kategori .sidebar h5 {
   font-weight: bold;
@@ -580,7 +601,8 @@ a:focus {
   font-family: "Fira Sans", sans-serif;
 }
 .isi-tab-main-shop .sidebar h1 {
-  font-size: 30px;
+  font-size: 1.15rem;
+  font-weight: bold;
 }
 .isi-tab-main-shop .sidebar a {
   color: #1206C2;
@@ -660,6 +682,13 @@ a:focus {
   width: auto;
 }
 
+.isi-details h2 {
+  text-align: center;
+  font-weight: bold;
+  color: #1206C2;
+  padding-top: 20px;
+}
+
 .details-box {
   width: 90%;
   padding: 20px;
@@ -733,6 +762,79 @@ a:focus {
   width: auto;
 }
 
+.cart-box {
+  width: 90%;
+  padding: 10px 20px;
+  border: 1px solid #AEE4FE;
+  border-radius: 25px;
+  margin: 70px auto;
+  color: #1206C2;
+  font-weight: bold;
+}
+.cart-box h1 {
+  text-align: center;
+  font-weight: bold;
+}
+.cart-box hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: #1206C2;
+  height: 3px;
+}
+.cart-box a {
+  color: #1206C2;
+}
+.cart-box img {
+  margin-left: 10%;
+  height: 400px;
+}
+.cart-box .jumlah {
+  text-align: center;
+  padding: 5px 0;
+}
+.cart-box .jumlah img {
+  height: 30px;
+  margin: 3px;
+}
+.cart-box .jumlah input {
+  width: 30px;
+  text-align: center;
+}
+.cart-box .kurir {
+  text-align: center;
+}
+.cart-box .kurir img {
+  height: 50px;
+  margin: 0;
+  margin-top: 20px;
+}
+.cart-box .kurir span {
+  padding-bottom: 10px;
+}
+.cart-box h4 {
+  font-weight: bold;
+}
+.cart-box span {
+  font-weight: normal;
+}
+.cart-box p {
+  font-weight: normal;
+}
+.cart-box button {
+  width: 50%;
+  font-family: "Fira Sans", sans-serif;
+  font-weight: bold;
+  background-color: #1206C2;
+  color: #F7F7F7;
+  border-radius: 25px;
+  margin: 0 25%;
+}
+.cart-box #kondisi {
+  width: auto;
+}
+
 .isi-tab-admin {
   font-size: 15px;
 }
@@ -744,7 +846,8 @@ a:focus {
   font-family: "Fira Sans", sans-serif;
 }
 .isi-tab-admin .sidebar-admin h1 {
-  font-size: 30px;
+  font-size: 1.15rem;
+  font-weight: bold;
 }
 .isi-tab-admin .sidebar-admin a {
   background-color: #1206C2;
@@ -755,6 +858,16 @@ a:focus {
 }
 .isi-tab-admin a {
   text-decoration: none;
+}
+.isi-tab-admin a button {
+  width: 50%;
+  font-family: "Fira Sans", sans-serif;
+  font-weight: bold;
+  background-color: #1206C2;
+  color: #F7F7F7;
+  border-radius: 25px;
+  margin: 0 25%;
+  margin-bottom: 30px;
 }
 .isi-tab-admin .konten-admin {
   padding: 20px 2%;
@@ -828,8 +941,9 @@ footer span {
   padding-bottom: 3px;
   margin-bottom: 0;
 }
-.footer-atas a:hover {
+.footer-atas a:focus, .footer-atas a:hover {
   text-decoration: none;
+  color: #1206C2;
 }
 
 .footer-bawah {

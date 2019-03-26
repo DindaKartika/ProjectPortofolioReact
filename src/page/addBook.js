@@ -81,7 +81,7 @@ class RegisterShop extends Component {
             }})
             .then(function(response){
                 console.log(response.data);
-                self.props.history.push('/buku-saya')
+                self.props.history.push('/produk-saya')
             })
             .catch(function(error){
                 console.log(error);

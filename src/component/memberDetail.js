@@ -2,20 +2,11 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 
+import AddDetailMember from './addMemberDetail.js'
+
 import "./../css/bootstrap.min.css";
 import "./../css/main.css";
 // import "./App.css"
-
-import Resign from './../image/Book/novel/resign.jpg'
-import Minus from './../image/icon/minus-blue.png'
-import Plus from './../image/icon/plus.png'
-
-import JNE from './../image/logo/jne.png'
-import JNT from './../image/logo/j&t.png'
-import Pos from './../image/logo/pos.png'
-import Wahana from './../image/logo/wahana.png'
-import AddDetailMember from "./addMemberDetail";
-
 class ViewDetailMember extends Component {
     constructor(props) {
         super(props);
@@ -46,7 +37,7 @@ class ViewDetailMember extends Component {
         const {detailMember} = this.state;
         console.log(detailMember)
 
-        // if (detailMember != {}){
+        if (detailMember != {}){
             return (
                 <div>
                     <h4 style={{textAlign: 'center'}}>Alamat Pengiriman</h4>
@@ -55,7 +46,7 @@ class ViewDetailMember extends Component {
                             <label for="alamat-lengkap">Nama Penerima</label>
                         </div>
                         <div className="col-md-9">
-                            <label>{detailMember.nama}</label>
+                            <label>{this.state.detailMember.nama}</label>
                         </div>
                     </div>
                     <div className="row">
@@ -63,7 +54,7 @@ class ViewDetailMember extends Component {
                             <label for="alamat-lengkap">Telepon</label>
                         </div>
                         <div className="col-md-9">
-                            <label>{detailMember.telepon}</label>
+                            <label>{this.state.detailMember.telepon}</label>
                         </div>
                     </div>
                     <div className="row">
@@ -71,7 +62,7 @@ class ViewDetailMember extends Component {
                             <label for="alamat-lengkap">Alamat Lengkap</label>
                         </div>
                         <div className="col-md-9">
-                            <label>{detailMember.alamat_lengkap}</label>
+                            <label>{this.state.detailMember.alamat_lengkap}</label>
                         </div>
                     </div>
                     <div className="row">
@@ -79,7 +70,7 @@ class ViewDetailMember extends Component {
                             <label for="kecamatan">Kecamatan</label>
                         </div>
                         <div className="col-md-9">
-                            <label>{detailMember.kecamatan}</label>
+                            <label>{this.state.detailMember.kecamatan}</label>
                         </div>
                     </div>
                     <div className="row">
@@ -87,7 +78,7 @@ class ViewDetailMember extends Component {
                             <label for="kota">Kota</label>
                         </div>
                         <div className="col-md-9">
-                            <label>{detailMember.kota}</label>
+                            <label>{this.state.detailMember.kota}</label>
                         </div>
                     </div>
                     <div className="row">
@@ -95,17 +86,17 @@ class ViewDetailMember extends Component {
                             <label for="kode-pos">Kode Pos</label>
                         </div>
                         <div className="col-md-9">
-                            <label>{detailMember.kodepos}</label>
+                            <label>{this.state.detailMember.kode_pos}</label>
                         </div>
                     </div>
                 </div>
             );
-        // }
-        // else{
-        //     return (
-        //         <AddDetailMember/>
-        //     );
-        // }
+        }
+        else{
+            return (
+                <AddDetailMember/>
+            );
+        }
     }
 }
 

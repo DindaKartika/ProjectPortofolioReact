@@ -25,21 +25,27 @@ class HomeSeller extends Component{
                     </div>
                     <div className="col-md-2 col-6">
                         <div className="telusuri">
-                            <a className="baca-selengkapnya" href="trending.html">
-                                <span>Open</span>
+                            <Link to="/info-toko" className="baca-selengkapnya">
+                                <span>Info</span>
                                 <img className="arrow" src={Arrow}/>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-6">
-                        <h4>Produk Saya</h4>
-                        <Link to="/produk-saya"><span className="isi-kategori">Produk saya</span></Link>
+                    <div className="col-md-6 isi-details">
+                        <Link to="/produk-saya">
+                            <div className="details-box">
+                                <h4>Produk Saya</h4>
+                            </div>
+                        </Link>
                     </div>
-                    <div className="col-md-6">
-                        <h4>Pesanan Masuk</h4>
-                        <Link to="/pesanan-saya"><span className="isi-kategori">Pesanan</span></Link>
+                    <div className="col-md-6 isi-details">
+                        <Link to="/pesanan-saya">
+                            <div className="details-box">
+                                <h4>Pesanan Masuk</h4>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>

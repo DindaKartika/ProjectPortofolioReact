@@ -27,7 +27,7 @@ class Penerbits extends Component {
             const publisher = this.props.location.pathname.slice(10)
             console.log(publisher)
             axios
-            .get('http://0.0.0.0:5000/buku', {
+            .get('http://0.0.0.0:5000/toko/buku/detail_buku', {
                 params:{
                     'penerbit': publisher,
                     'p' : selectedPage
@@ -35,7 +35,7 @@ class Penerbits extends Component {
             })
             .then(function(response){
                 self.setState({Books: response.data});
-                console.log('publisher', response.data);
+                console.log('Books', response.data);
             })
             .catch(function(error){
                 console.log('error', error);
@@ -63,7 +63,7 @@ class Penerbits extends Component {
                                 <div className="row">
                                 {Books.map((item, key) => {
                                     console.log(item)
-                                    return <ListBook key ={key} id={item.id_buku} judul={item.judul_buku} image={item.gambar} toko={item.id_toko} harga={item.harga} kondisi={item.kondisi}/>;
+                                    return <ListBook key ={key} id={item.id_buku} buku={item.book}toko={item.shop}/>;
                                 })}
                                 </div>
                             </div>
@@ -71,8 +71,8 @@ class Penerbits extends Component {
                                 <div className="page">
                                     <span>Page</span>
                                     <PaginationComponent
-                                    totalItems={50}
-                                    pageSize={3}
+                                    totalItems={Books.length}
+                                    pageSize={10}
                                     onSelect={this.handleSelected}
                                     maxPaginationNumbers={5}
                                     />

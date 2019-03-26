@@ -36,16 +36,16 @@ class HomeTrending extends Component{
                 <div className="book-big">
                     <div className="row">
                     <div className="col-lg-3 col-md-6">
-                        <Link to="/search"><img src={Arkais}/></Link>
+                        <Link to="/search?search=arkais"><img src={Arkais}/></Link>
                     </div>
                     <div className="col-lg-3 col-md-6">
-                        <Link to="/search"><img src={DearNathan}/></Link>
+                        <Link to="/search?search=dear+nathan"><img src={DearNathan}/></Link>
                     </div>
                     <div className="col-lg-3 col-md-6">
-                        <Link to="/search"><img src={Mozachiko}/></Link>
+                        <Link to="/search?search=mozachiko"><img src={Mozachiko}/></Link>
                     </div>
                     <div className="col-lg-3 col-md-6">
-                        <Link to="/search"><img src={Shea}/></Link>
+                        <Link to="/search?search=shea"><img src={Shea}/></Link>
                     </div>
                 </div>
             </div>
