@@ -37,7 +37,7 @@ class RegisterShop extends Component {
         const tokens = localStorage.getItem('token')
         const self = this;
         axios
-            .post('http://0.0.0.0:5000/detail_toko', data, {headers:{
+            .post('https://bukuku.site/detail_toko', data, {headers:{
                 'Authorization' : 'Bearer ' + tokens
             }})
             .then(function(response){

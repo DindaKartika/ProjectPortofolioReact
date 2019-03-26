@@ -35,7 +35,7 @@ class OrderDetail extends Component {
         const tokens = localStorage.getItem('token')
         const id_penjualan = this.props.location.pathname.slice(14)
         axios
-        .get('http://0.0.0.0:5000/toko/penjualan/' + id_penjualan, {
+        .get('https://bukuku.site/toko/penjualan/' + id_penjualan, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -79,7 +79,7 @@ class OrderDetail extends Component {
         console.log(data)
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/toko/penjualan/' + id_penjualan, data, {
+        .put('https://bukuku.site/toko/penjualan/' + id_penjualan, data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }

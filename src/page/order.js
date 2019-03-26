@@ -9,7 +9,7 @@ import "./../css/main.css";
 import SidebarKategori from '../component/sidebarKategori'
 import LoopPenjualan from '../component/loopOrder'
 
-const base_url = 'http://0.0.0.0:5000/buku?kategori=';
+const base_url = 'https://bukuku.site/buku?kategori=';
 
 
 class Order extends Component {
@@ -27,7 +27,7 @@ class Order extends Component {
             console.log(this.state.selectedPage)
             const tokens = localStorage.getItem('token')
             axios
-            .get('http://0.0.0.0:5000/toko/penjualan', {
+            .get('https://bukuku.site/toko/penjualan', {
                 params:{
                     'p' : this.state.selectedPage
                 },

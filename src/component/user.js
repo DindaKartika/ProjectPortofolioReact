@@ -21,7 +21,7 @@ class User extends Component {
     componentDidMount(){
         const tokens = localStorage.getItem('token')
         axios
-        .get('http://0.0.0.0:5000/member/me', {
+        .get('https://bukuku.site/member/me', {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }

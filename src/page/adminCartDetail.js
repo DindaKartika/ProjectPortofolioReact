@@ -29,7 +29,7 @@ class AdminCartPembelian extends Component {
         console.log(id_cart)
         const tokens = localStorage.getItem('token')
         axios
-        .get('http://0.0.0.0:5000/admin/cart/' + id_cart, {headers:{
+        .get('https://bukuku.site/admin/cart/' + id_cart, {headers:{
             'Authorization' : 'Bearer ' + tokens
         }})
         .then(function(response){
@@ -58,7 +58,7 @@ class AdminCartPembelian extends Component {
 
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/admin/cart/' + id_cart, data, {
+        .put('https://bukuku.site/admin/cart/' + id_cart, data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -86,7 +86,7 @@ class AdminCartPembelian extends Component {
 
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/admin/cart/' + id_cart, data, {
+        .put('https://bukuku.site/admin/cart/' + id_cart, data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }

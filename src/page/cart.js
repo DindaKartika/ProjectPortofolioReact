@@ -23,7 +23,7 @@ class Cart extends Component {
         const self = this;
         const tokens = localStorage.getItem('token')
         axios
-        .get('http://0.0.0.0:5000/cart/me', {
+        .get('https://bukuku.site/cart/me', {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -49,7 +49,7 @@ class Cart extends Component {
         const tokens = localStorage.getItem('token')
         const self = this;
         axios
-            .post('http://0.0.0.0:5000/transaksi/me', data, {headers:{
+            .post('https://bukuku.site/transaksi/me', data, {headers:{
                 'Authorization' : 'Bearer ' + tokens
             }})
             .then(function(response){

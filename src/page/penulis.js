@@ -25,7 +25,7 @@ class Penulis extends Component {
             const writer = this.props.location.pathname.slice(9)
             console.log(writer)
             axios
-            .get('http://0.0.0.0:5000/toko/buku/detail_buku', {
+            .get('https://bukuku.site/toko/buku/detail_buku', {
                 params:{
                     'penulis': writer,
                     'p' : selectedPage

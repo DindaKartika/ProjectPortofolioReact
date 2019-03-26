@@ -27,7 +27,7 @@ class AdminBukuDetail extends Component {
         console.log(id_buku)
         const tokens = localStorage.getItem('token')
         axios
-        .get('http://0.0.0.0:5000/admin/buku/' + id_buku, {headers:{
+        .get('https://bukuku.site/admin/buku/' + id_buku, {headers:{
             'Authorization' : 'Bearer ' + tokens
         }})
         .then(function(response){
@@ -56,7 +56,7 @@ class AdminBukuDetail extends Component {
 
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/admin/buku/' + id_buku, data, {
+        .put('https://bukuku.site/admin/buku/' + id_buku, data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -84,7 +84,7 @@ class AdminBukuDetail extends Component {
 
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/admin/buku/' + id_buku, data, {
+        .put('https://bukuku.site/admin/buku/' + id_buku, data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }

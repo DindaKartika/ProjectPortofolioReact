@@ -9,7 +9,7 @@ import "./../css/main.css";
 import SidebarKategori from '../component/sidebarKategori'
 import ListBook from '../component/kontenPenerbit'
 
-const base_url = 'http://0.0.0.0:5000/buku?kategori=';
+const base_url = 'https://bukuku.site/buku?kategori=';
 
 
 class Penerbits extends Component {
@@ -27,7 +27,7 @@ class Penerbits extends Component {
             const publisher = this.props.location.pathname.slice(10)
             console.log(publisher)
             axios
-            .get('http://0.0.0.0:5000/toko/buku/detail_buku', {
+            .get('https://bukuku.site/toko/buku/detail_buku', {
                 params:{
                     'penerbit': publisher,
                     'p' : selectedPage

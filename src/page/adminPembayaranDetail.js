@@ -26,7 +26,7 @@ class AdminPembayaranDetail extends Component {
         console.log(id_metode_pembayaran)
         const tokens = localStorage.getItem('token')
         axios
-        .get('http://0.0.0.0:5000/admin/metode_pembayaran/' + id_metode_pembayaran, {headers:{
+        .get('https://bukuku.site/admin/metode_pembayaran/' + id_metode_pembayaran, {headers:{
             'Authorization' : 'Bearer ' + tokens
         }})
         .then(function(response){
@@ -51,7 +51,7 @@ class AdminPembayaranDetail extends Component {
 
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/admin/metode_pembayaran/' + id_pembayaran, data, {
+        .put('https://bukuku.site/admin/metode_pembayaran/' + id_pembayaran, data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -77,7 +77,7 @@ class AdminPembayaranDetail extends Component {
 
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/admin/metode_pembayaran/' + id_pembayaran, data, {
+        .put('https://bukuku.site/admin/metode_pembayaran/' + id_pembayaran, data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }

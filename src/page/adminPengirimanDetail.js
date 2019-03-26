@@ -26,7 +26,7 @@ class AdminPengirimanDetail extends Component {
         console.log(id_metode_pengiriman)
         const tokens = localStorage.getItem('token')
         axios
-        .get('http://0.0.0.0:5000/admin/metode_pengiriman/' + id_metode_pengiriman, {headers:{
+        .get('https://bukuku.site/admin/metode_pengiriman/' + id_metode_pengiriman, {headers:{
             'Authorization' : 'Bearer ' + tokens
         }})
         .then(function(response){
@@ -51,7 +51,7 @@ class AdminPengirimanDetail extends Component {
 
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/admin/metode_pengiriman/' + id_pengiriman, data, {
+        .put('https://bukuku.site/admin/metode_pengiriman/' + id_pengiriman, data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -77,7 +77,7 @@ class AdminPengirimanDetail extends Component {
 
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/admin/metode_pengiriman/' + id_pengiriman, data, {
+        .put('https://bukuku.site/admin/metode_pengiriman/' + id_pengiriman, data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }

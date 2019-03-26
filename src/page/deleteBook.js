@@ -35,7 +35,7 @@ class DeleteBook extends Component {
         const tokens = localStorage.getItem('token')
         console.log(id_buku)
         axios
-        .delete('http://0.0.0.0:5000/pembelian/me/' + id_buku, {
+        .delete('https://bukuku.site/pembelian/me/' + id_buku, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }

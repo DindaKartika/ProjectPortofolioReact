@@ -10,7 +10,7 @@ import SidebarKategori from '../component/sidebarKategori'
 import ListBooks from '../component/kontenProduct'
 import SidebarProduct from "../component/sidebarProduct";
 
-const base_url = 'http://0.0.0.0:5000/buku?kategori=';
+const base_url = 'https://bukuku.site/buku?kategori=';
 
 
 class Product extends Component {
@@ -28,7 +28,7 @@ class Product extends Component {
             const tokens = localStorage.getItem('token')
             console.log(this.state.selectedPage)
             axios
-            .get('http://0.0.0.0:5000/toko/buku', {
+            .get('https://bukuku.site/toko/buku', {
                 params:{
                     'p' : this.state.selectedPage
                 },
@@ -51,7 +51,7 @@ class Product extends Component {
             console.log(this.state.selectedPage)
             const tokens = localStorage.getItem('token')
             axios
-            .get('http://3.1.132.156:5000/toko/buku', {
+            .get('https://bukuku.site/toko/buku', {
                 params:{
                     'p' : this.state.selectedPage
                 },

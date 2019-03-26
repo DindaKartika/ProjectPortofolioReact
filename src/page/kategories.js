@@ -27,7 +27,7 @@ class Kategories extends Component {
             const category = this.props.location.pathname.slice(10)
             console.log(this.state.selectedPage)
             axios
-            .get('http://0.0.0.0:5000/buku', {
+            .get('https://bukuku.site/buku', {
                 params:{
                     'kategori': category,
                     'p' : this.state.selectedPage
@@ -47,7 +47,7 @@ class Kategories extends Component {
             const category = this.props.location.pathname.slice(10)
             console.log(this.state.selectedPage)
             axios
-            .get('http://0.0.0.0:5000/buku', {
+            .get('https://bukuku.site/buku', {
                 params:{
                     'kategori': category,
                     'p' : this.state.selectedPage

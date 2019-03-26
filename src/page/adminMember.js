@@ -9,7 +9,7 @@ import "./../css/main.css";
 import ListMember from '../component/adminMemberLoop'
 import SidebarAdmin from "../component/sidebarAdmin";
 
-const base_url = 'http://0.0.0.0:5000/buku?kategori=';
+const base_url = 'https://bukuku.site/buku?kategori=';
 
 
 class AdminMember extends Component {
@@ -27,7 +27,7 @@ class AdminMember extends Component {
             console.log(this.state.selectedPage)
             const tokens = localStorage.getItem('token')
             axios
-            .get('http://0.0.0.0:5000/admin/member', {
+            .get('https://bukuku.site/admin/member', {
                 params:{
                     'p' : this.state.selectedPage
                 },
@@ -49,7 +49,7 @@ class AdminMember extends Component {
             console.log(this.state.selectedPage)
             const tokens = localStorage.getItem('token')
             axios
-            .get('http://0.0.0.0:5000/admin/member', {
+            .get('https://bukuku.site/admin/member', {
                 params:{
                     'p' : this.state.selectedPage
                 },

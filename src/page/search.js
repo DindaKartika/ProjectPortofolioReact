@@ -32,7 +32,7 @@ class Search extends Component {
             let params = queryString.parse(url);
             console.log(params);
             axios
-            .get('http://0.0.0.0:5000/buku', {
+            .get('https://bukuku.site/buku', {
                 params:{
                     'judul_buku': params.search,
                     'p' : selectedPage

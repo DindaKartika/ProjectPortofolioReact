@@ -22,7 +22,7 @@ class SignUp extends Component {
         };
         const self = this;
         axios
-            .post('http://0.0.0.0:5000/member/register', data)
+            .post('https://bukuku.site/member/register', data)
             .then(function(response){
                 console.log(response.data);
                 self.props.history.push('/');

@@ -36,7 +36,7 @@ class BookDetail extends Component {
         const id_buku = this.props.location.pathname.slice(13)
         console.log(id_buku)
         axios
-        .get('http://0.0.0.0:5000/buku/' + id_buku)
+        .get('https://bukuku.site/buku/' + id_buku)
         .then(function(response){
             self.setState({Books: response.data});
             self.setState({Details: response.data.detail})
@@ -67,7 +67,7 @@ class BookDetail extends Component {
 
         const tokens = localStorage.getItem('token')
         axios
-        .post('http://0.0.0.0:5000/pembelian/me', data, {
+        .post('https://bukuku.site/pembelian/me', data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }

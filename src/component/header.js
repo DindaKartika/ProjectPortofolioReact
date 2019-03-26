@@ -47,7 +47,7 @@ class Header extends Component{
         const self = this;
         const {username, password} = this.state;
           axios
-              .get('http://0.0.0.0:5000/login', {
+              .get('https://bukuku.site/login', {
                 params:{
                     'username': this.state.username,
                     'password': this.state.password
@@ -73,7 +73,7 @@ class Header extends Component{
       componentDidMount = () =>{
         const tokens = localStorage.getItem('token')
         axios
-        .get('http://0.0.0.0:5000/member/me', {
+        .get('https://bukuku.site/member/me', {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }

@@ -11,7 +11,7 @@ import ListBook from '../component/kontenKategori'
 import SidebarAdmin from "../component/sidebarAdmin";
 import ListToko from '../component/adminTokoLoop'
 
-const base_url = 'http://0.0.0.0:5000/buku?kategori=';
+const base_url = 'https://bukuku.site/buku?kategori=';
 
 
 class AdminToko extends Component {
@@ -29,7 +29,7 @@ class AdminToko extends Component {
             const tokens = localStorage.getItem('token')
             console.log(this.state.selectedPage)
             axios
-            .get('http://0.0.0.0:5000/admin/toko', {
+            .get('https://bukuku.site/admin/toko', {
                 params:{
                     'p' : this.state.selectedPage
                 },
@@ -51,7 +51,7 @@ class AdminToko extends Component {
             const tokens = localStorage.getItem('token')
             console.log(this.state.selectedPage)
             axios
-            .get('http://0.0.0.0:5000/admin/toko', {
+            .get('https://bukuku.site/admin/toko', {
                 params:{
                     'p' : this.state.selectedPage
                 },

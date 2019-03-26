@@ -45,7 +45,7 @@ class BookInfo extends Component {
         const tokens = localStorage.getItem('token')
         console.log(id_buku)
         axios
-        .get('http://0.0.0.0:5000/toko/buku/' + id_buku, {
+        .get('https://bukuku.site/toko/buku/' + id_buku, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -82,7 +82,7 @@ class BookInfo extends Component {
 
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/toko/buku/' + id_buku, data, {
+        .put('https://bukuku.site/toko/buku/' + id_buku, data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -110,7 +110,7 @@ class BookInfo extends Component {
 
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/toko/buku/' + id_buku, data, {
+        .put('https://bukuku.site/toko/buku/' + id_buku, data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -142,7 +142,7 @@ class BookInfo extends Component {
         console.log(data)
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/toko/buku/' + id_buku, data, {
+        .put('https://bukuku.site/toko/buku/' + id_buku, data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }

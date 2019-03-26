@@ -22,7 +22,7 @@ class PilihanPembayaran extends Component {
         const self = this;
         const tokens = localStorage.getItem('token')
         axios
-        .get('http://0.0.0.0:5000/admin/metode_pembayaran', {
+        .get('https://bukuku.site/admin/metode_pembayaran', {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }

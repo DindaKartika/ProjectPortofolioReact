@@ -9,7 +9,7 @@ import "./../css/main.css";
 import SidebarAdmin from "../component/sidebarAdmin";
 import ListPembayaran from '../component/adminPembayaranLoop'
 
-const base_url = 'http://0.0.0.0:5000/buku?kategori=';
+const base_url = 'https://bukuku.site/buku?kategori=';
 
 
 class MetodePembayaran extends Component {
@@ -27,7 +27,7 @@ class MetodePembayaran extends Component {
             const tokens = localStorage.getItem('token')
             console.log(this.state.selectedPage)
             axios
-            .get('http://0.0.0.0:5000/admin/metode_pembayaran', {
+            .get('https://bukuku.site/admin/metode_pembayaran', {
                 params:{
                     'p' : this.state.selectedPage
                 },
@@ -49,7 +49,7 @@ class MetodePembayaran extends Component {
             const tokens = localStorage.getItem('token')
             console.log(this.state.selectedPage)
             axios
-            .get('http://0.0.0.0:5000/admin/metode_pembayaran', {
+            .get('https://bukuku.site/admin/metode_pembayaran', {
                 params:{
                     'p' : this.state.selectedPage
                 },

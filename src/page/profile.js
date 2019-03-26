@@ -35,7 +35,7 @@ class Profile extends Component {
         const tokens = localStorage.getItem('token')
         console.log(this.state.selectedPage)
         axios
-        .get('http://0.0.0.0:5000/member/me', {
+        .get('https://bukuku.site/member/me', {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -84,7 +84,7 @@ class Profile extends Component {
         console.log(data)
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/member/me', data, {
+        .put('https://bukuku.site/member/me', data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -114,7 +114,7 @@ class Profile extends Component {
         console.log(data)
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/detail_member/me/' + id_member, data, {
+        .put('https://bukuku.site/detail_member/me/' + id_member, data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }

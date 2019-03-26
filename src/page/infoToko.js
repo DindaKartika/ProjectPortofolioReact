@@ -36,7 +36,7 @@ class InfoToko extends Component {
         const self = this;
         const tokens = localStorage.getItem('token')
         axios
-        .get('http://0.0.0.0:5000/toko/me', {
+        .get('https://bukuku.site/toko/me', {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -82,7 +82,7 @@ class InfoToko extends Component {
         console.log(data)
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/toko/me', data, {
+        .put('https://bukuku.site/toko/me', data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -109,7 +109,7 @@ class InfoToko extends Component {
         console.log(data)
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/detail_toko', data, {
+        .put('https://bukuku.site/detail_toko', data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -134,7 +134,7 @@ class InfoToko extends Component {
 
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/toko/me', data, {
+        .put('https://bukuku.site/toko/me', data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }
@@ -158,7 +158,7 @@ class InfoToko extends Component {
 
         const tokens = localStorage.getItem('token')
         axios
-        .put('http://0.0.0.0:5000/toko/me', data, {
+        .put('https://bukuku.site/toko/me', data, {
             headers:{
                 'Authorization' : 'Bearer ' + tokens
             }

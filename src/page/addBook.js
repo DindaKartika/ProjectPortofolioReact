@@ -46,7 +46,7 @@ class RegisterShop extends Component {
         const self = this;
         const tokens = localStorage.getItem('token')
         axios
-            .post('http://0.0.0.0:5000/toko/buku', data, {headers:{
+            .post('https://bukuku.site/toko/buku', data, {headers:{
                 'Authorization' : 'Bearer ' + tokens
             }})
             .then(function(response){
@@ -76,7 +76,7 @@ class RegisterShop extends Component {
         const self = this;
         const tokens = localStorage.getItem('token')
         axios
-            .post('http://0.0.0.0:5000/toko/buku/detail_buku', data, {headers:{
+            .post('https://bukuku.site/toko/buku/detail_buku', data, {headers:{
                 'Authorization' : 'Bearer ' + tokens
             }})
             .then(function(response){

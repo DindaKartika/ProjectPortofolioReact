@@ -20,7 +20,7 @@ class ViewDetailMember extends Component {
         const tokens = localStorage.getItem('token')
         const self = this;
         axios
-            .get('http://0.0.0.0:5000/detail_member/me', {
+            .get('https://bukuku.site/detail_member/me', {
                 headers:{
                 'Authorization' : 'Bearer ' + tokens
             }})

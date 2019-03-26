@@ -37,7 +37,7 @@ class AddPayment extends Component {
         const self = this;
         const tokens = localStorage.getItem('token')
         axios
-            .post('http://0.0.0.0:5000/admin/metode_pengiriman', data, {headers:{
+            .post('https://bukuku.site/admin/metode_pengiriman', data, {headers:{
                 'Authorization' : 'Bearer ' + tokens
             }})
             .then(function(response){
