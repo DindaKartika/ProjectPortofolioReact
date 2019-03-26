@@ -39,7 +39,7 @@ class AddDetailMember extends Component {
         const tokens = localStorage.getItem('token')
         const self = this;
         axios
-            .post('http://0.0.0.0:5000/detail_member/me', data, {headers:{
+            .post('https://bukuku.site/detail_member/me', data, {headers:{
                 'Authorization' : 'Bearer ' + tokens
             }})
             .then(function(response){

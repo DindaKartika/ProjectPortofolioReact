@@ -10,7 +10,6 @@ import SidebarKategori from '../component/sidebarKategori'
 import ListBook from '../component/adminBukuLoop'
 import SidebarAdmin from "../component/sidebarAdmin";
 
-const base_url = 'https://bukuku.site/buku?kategori=';
 
 
 class AdminBuku extends Component {
